@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Zepto源码解析--初识Zepto | 静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 开始的部分
+定义了一些局部变量一些常规的定义+数组的方法（concat，filter，slice）—&amp;gt;可以借鉴（在以后用到的时候可以直接调用，减少代码的复用率，减少作用域链）1234567891011一些正则：（很有用） //匹配HTML代码 fragmentRE = /^\s*&amp;lt;(\w+|!)[^&amp;gt;]*&amp;gt;/, //匹配单个HTML标签 singleTagRE = /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zepto源码解析--初识Zepto">
+<meta property="og:url" content="http://yoursite.com/2016/09/18/Zepto源码解析-初识Zepto/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="1. 开始的部分
+定义了一些局部变量一些常规的定义+数组的方法（concat，filter，slice）—&amp;gt;可以借鉴（在以后用到的时候可以直接调用，减少代码的复用率，减少作用域链）1234567891011一些正则：（很有用） //匹配HTML代码 fragmentRE = /^\s*&amp;lt;(\w+|!)[^&amp;gt;]*&amp;gt;/, //匹配单个HTML标签 singleTagRE = /">
+<meta property="og:updated_time" content="2016-09-18T11:31:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zepto源码解析--初识Zepto">
+<meta name="twitter:description" content="1. 开始的部分
+定义了一些局部变量一些常规的定义+数组的方法（concat，filter，slice）—&amp;gt;可以借鉴（在以后用到的时候可以直接调用，减少代码的复用率，减少作用域链）1234567891011一些正则：（很有用） //匹配HTML代码 fragmentRE = /^\s*&amp;lt;(\w+|!)[^&amp;gt;]*&amp;gt;/, //匹配单个HTML标签 singleTagRE = /">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Zepto源码解析-初识Zepto" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zepto源码解析--初识Zepto
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-开始的部分"><a href="#1-开始的部分" class="headerlink" title="1. 开始的部分"></a>1. 开始的部分</h4><ol>
+<li>定义了一些局部变量<br>一些常规的定义+数组的方法（concat，filter，slice）—&gt;可以借鉴（在以后用到的时候可以直接调用，减少代码的复用率，减少作用域链）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">一些正则：（很有用）</div><div class="line"> //匹配HTML代码</div><div class="line"> fragmentRE = /^\s*&lt;(\w+|!)[^&gt;]*&gt;/,</div><div class="line"></div><div class="line"> //匹配单个HTML标签</div><div class="line"> singleTagRE = /^&lt;(\w+)\s*\/?&gt;(?:&lt;\/\1&gt;|)$/,</div><div class="line"> //匹配自闭合标签tagExpanderRE=/&lt;(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^&gt;]*)\/&gt;/ig,</div><div class="line"> //匹配根节点</div><div class="line"> rootNodeRE = /^(?:body|html)$/i,</div><div class="line"> //匹配A-Z</div><div class="line"> capitalRE = /([A-Z])/g,</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其实还定义了很多，我刚刚看的时候一脸懵，现在也是，可能在后面的方法里就慢慢知道了！我主要想说一下下面的几个方法</p>
+<h4 id="zepto-matches"><a href="#zepto-matches" class="headerlink" title="zepto.matches"></a>zepto.matches</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">zepto.matches = function(element, selector) &#123;</div><div class="line">     //没参数或者非元素节点，直接返回</div><div class="line">      if (!selector || !element || element.nodeType !== 1) return false</div><div class="line"></div><div class="line">      //如果浏览器支持MatchesSelector  直接调用（这个方法的意义：如果当前元素能被指定的css选择器查找到,则返回true,否则返回false.</div><div class="line">）</div><div class="line">      //兼容写法（每隔浏览器都不一样）</div><div class="line">    var matchesSelector = element.webkitMatchesSelector || element.mozMatchesSelector ||element.oMatchesSelector || element.matchesSelector</div><div class="line">    if (matchesSelector) return matchesSelector.call(element, selector)</div><div class="line"></div><div class="line">      //浏览器不支持MatchesSelector</div><div class="line">    var match, parent = element.parentNode, temp = !parent</div><div class="line"></div><div class="line">      //元素没有父元素，存入到临时的div tempParent（上面有声明）</div><div class="line">    if (temp) (parent = tempParent).appendChild(element)</div><div class="line"></div><div class="line">      //再通过父元素来搜索此表达式。  找不到-1  找到有索引从0开始</div><div class="line">    match = ~zepto.qsa(parent, selector).indexOf(element)</div><div class="line"></div><div class="line">    //清理临时父节点</div><div class="line">    temp &amp;&amp; tempParent.removeChild(element)</div><div class="line"></div><div class="line">      //返回匹配</div><div class="line">    return match</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的方法我想说一下<br><code>match = ~zepto.qsa(parent, selector).indexOf(element)</code>按位取反符号<br>主要目的：因为matches的方法主要是为了查看当前元素能被指定的css选择器查找到，找到是true，否则是false，但是用indexOf的时候，找不到是-1（布尔值是true），找到是从所以0（布尔值是false）开始，但是我们需要的是true或false，所以借助取反符号~<code>作用是将值取负数再减1   如-1变成0（布尔值是false）  0变成-1（布尔值是true）</code>所以说对结果一目了然</p>
+</blockquote>
+<p>在这里穿插个正则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function dasherize(str) &#123;</div><div class="line">    return str.replace(/::/g, &apos;/&apos;) //将：：替换成/</div><div class="line">           .replace(/([A-Z]+)([A-Z][a-z])/g, &apos;$1_$2&apos;) //在大小写字符之间插入_,大写在前，比如AAAbb,得到AA_Abb</div><div class="line">           .replace(/([a-z\d])([A-Z])/g, &apos;$1_$2&apos;)  //在大小写字符之间插入_,小写或数字在前，比如bbbAaa,得到bbb_Aaa</div><div class="line">           .replace(/_/g, &apos;-&apos;)  //将_替换成-</div><div class="line">           .toLowerCase()   //转成小写</div><div class="line">  &#125;</div><div class="line">  对`$`解释一下：RegExp.$1是RegExp的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串，以此类推，RegExp.$2，RegExp.$3，..RegExp.$99总共可以有99个匹配(正则出现的概率很大，功能强大，而且也很好玩，可以没事多看看)</div></pre></td></tr></table></figure></p>
+<h4 id="defaultDisplay-也是个方法—-gt-看名字就知道是默认隐藏"><a href="#defaultDisplay-也是个方法—-gt-看名字就知道是默认隐藏" class="headerlink" title="defaultDisplay(也是个方法—&gt;看名字就知道是默认隐藏)"></a>defaultDisplay(也是个方法—&gt;看名字就知道是默认隐藏)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function defaultDisplay(nodeName) &#123;</div><div class="line">    var element, display</div><div class="line">    if (!elementDisplay[nodeName]) &#123;  //缓存里没有</div><div class="line"></div><div class="line">      element = document.createElement(nodeName)</div><div class="line">      document.body.appendChild(element)</div><div class="line">      display = getComputedStyle(element, &apos;&apos;).getPropertyValue(&quot;display&quot;)</div><div class="line">      element.parentNode.removeChild(element)</div><div class="line"></div><div class="line">        // display == &quot;none&quot;，设置成blaock，即隐藏-显示</div><div class="line">      display == &quot;none&quot; &amp;&amp; (display = &quot;block&quot;)</div><div class="line"></div><div class="line">      elementDisplay[nodeName] = display //缓存元素的默认display属性，缓存干嘛？</div><div class="line">    &#125;</div><div class="line">    return elementDisplay[nodeName]</div><div class="line">  &#125;</div><div class="line">  这段代码逻辑不难，但是我写这个的主要目的是想说，我在最开始对源码的时候看到了个</div><div class="line">  elementDisplay = &#123;&#125;, //不知道干啥的</div><div class="line">  当时还注释了一下，但是看到这里的时候才明白，然后我想说的就是：保留一些疑问，可能在后面就会慢慢发现前面不懂得地方,当然也不要任由其过去，</div><div class="line">  其实这个我现在也不是很懂（只能明白，但是具体的作用还不是很清楚），但是感觉以后会很明白的^_^</div></pre></td></tr></table></figure>
+<h4 id="zepto-fragment"><a href="#zepto-fragment" class="headerlink" title="zepto.fragment"></a>zepto.fragment</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     *  将 HTML 转换成 DOM</div><div class="line">     *  原理是 创建父元素，innerHTML转换</div><div class="line">     * @param html  html片段</div><div class="line">     * @param name  容器标签名</div><div class="line">     * @param propertie  附加的属性对象</div><div class="line">     * @returns &#123;*&#125;</div><div class="line">     */</div><div class="line">  zepto.fragment = function(html, name, properties) &#123;</div><div class="line">    var dom, nodes, container</div><div class="line"></div><div class="line">    // A special case optimization for a single tag</div><div class="line">      //如果是单个元素，创建dom</div><div class="line"></div><div class="line">    if (singleTagRE.test(html)) dom = $(document.createElement(RegExp.$1))</div><div class="line"></div><div class="line">    if (!dom) &#123;</div><div class="line">        //修正自闭合标签 如&lt;div/&gt;，转换成&lt;div&gt;&lt;/div&gt;</div><div class="line">      if (html.replace) html = html.replace(tagExpanderRE, &quot;&lt;$1&gt;&lt;/$2&gt;&quot;)</div><div class="line">        //给name取元素名</div><div class="line">      if (name === undefined) name = fragmentRE.test(html) &amp;&amp; RegExp.$1</div><div class="line">        //设置容器名，如果不是tr,tbody,thead,tfoot,td,th，则容器名为div（containers主要包括一些表单的元素）</div><div class="line">      if (!(name in containers)) name = &apos;*&apos;</div><div class="line"></div><div class="line">      container = containers[name]    //创建容器</div><div class="line">      container.innerHTML = &apos;&apos; + html       //生成DOM</div><div class="line">       //取容器的子节点</div><div class="line">      dom = $.each(slice.call(container.childNodes), function()&#123;</div><div class="line">        container.removeChild(this)   //把创建的子节点逐个删除</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">    //如果properties是对象，遍历它，将它设置成DOM的属性</div><div class="line">    if (isPlainObject(properties)) &#123;</div><div class="line">        //转换成Zepto Obj,方便调用Zepto的方法</div><div class="line">      nodes = $(dom)</div><div class="line">        //遍历对象，设置属性</div><div class="line">      $.each(properties, function(key, value) &#123;</div><div class="line">          //优先获取属性修正对象，通过修正对象读写值</div><div class="line">          // methodAttributes包含&apos;val&apos;, &apos;css&apos;, &apos;html&apos;, &apos;text&apos;, &apos;data&apos;, &apos;width&apos;, &apos;height&apos;, &apos;offset&apos;，</div><div class="line"></div><div class="line">        if (methodAttributes.indexOf(key) &gt; -1) nodes[key](value)</div><div class="line">        else nodes.attr(key, value)</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //返回dom数组  如[div,div]</div><div class="line">    return dom</div><div class="line">  &#125;</div><div class="line"></div><div class="line">    //这里也会用到一些zepto的方法，后期我会一点一点介绍的！</div></pre></td></tr></table></figure>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>很遗憾的说：这篇文章有点渣，因为还木有涉及到zepto的原理核心，都是一些准备工作！（有的现在还是一知半解）<br><code>总结一下</code>：</p>
+<ol>
+<li><p>正则的大量使用（可以更简单更方便的对一些想要的东西进行操作）</p>
+<blockquote>
+<p>说一下我对正则的理解:<br>唯一性：我所说的唯一性不是说单独匹配某一个东西，我说的唯一性就是正则会按照你想的东西去匹配你想要的（当然前提你的正则需要书写正确），/^aaaaaa$/这个正则就是只能匹配<code>aaaaaa</code>,很唯一吧，位数需要对的上，开头结尾都是a，差一点不行，错一位不可以，我真真的感觉到正则去匹配字符串的时候都是按照你书写的顺序，字段，以及逻辑去匹配的，（好吧，我读了一下这段话，有点懵，但是最最想说的就是要学好正则，这东西挺有意思的）</p>
+</blockquote>
+</li>
+<li><p>学习的小套路：</p>
+<blockquote>
+<p>不会的时候怎么办，不知道从何处下手的时候怎么办，感觉特别难时是不是有点不想写不想学？<br>我在看不会的东西的时候一脸懵，然后会产生抵触，然后会害怕，然后烦躁，然后…然后你要想办法解决：看书的时候有看到，当你害怕，迷惑的时候你不妨先做一点点，写一点点，看一点点，迈出第一步，然后自然而然的第二步，总之我想说的就是不要害怕，慢慢走，自然而然就好了</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="end（下次是zepto的整体架构）"><a href="#end（下次是zepto的整体架构）" class="headerlink" title="end（下次是zepto的整体架构）"></a>end（下次是zepto的整体架构）</h3>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/09/18/Zepto源码解析-初识Zepto/" class="archive-article-date">
+  	<time datetime="2016-09-18T11:30:30.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-18</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/13/第一篇博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第一篇博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
