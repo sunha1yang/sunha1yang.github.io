@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="静默花开">
 <meta property="og:description" content="1. 开始的部分
 定义了一些局部变量一些常规的定义+数组的方法（concat，filter，slice）—&amp;gt;可以借鉴（在以后用到的时候可以直接调用，减少代码的复用率，减少作用域链）1234567891011一些正则：（很有用） //匹配HTML代码 fragmentRE = /^\s*&amp;lt;(\w+|!)[^&amp;gt;]*&amp;gt;/, //匹配单个HTML标签 singleTagRE = /">
-<meta property="og:updated_time" content="2016-09-18T11:31:07.000Z">
+<meta property="og:updated_time" content="2016-09-20T01:41:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zepto源码解析--初识Zepto">
 <meta name="twitter:description" content="1. 开始的部分
@@ -154,6 +154,7 @@
 </li>
 </ol>
 <p>其实还定义了很多，我刚刚看的时候一脸懵，现在也是，可能在后面的方法里就慢慢知道了！我主要想说一下下面的几个方法</p>
+<a id="more"></a>
 <h4 id="zepto-matches"><a href="#zepto-matches" class="headerlink" title="zepto.matches"></a>zepto.matches</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">zepto.matches = function(element, selector) &#123;</div><div class="line">     //没参数或者非元素节点，直接返回</div><div class="line">      if (!selector || !element || element.nodeType !== 1) return false</div><div class="line"></div><div class="line">      //如果浏览器支持MatchesSelector  直接调用（这个方法的意义：如果当前元素能被指定的css选择器查找到,则返回true,否则返回false.</div><div class="line">）</div><div class="line">      //兼容写法（每隔浏览器都不一样）</div><div class="line">    var matchesSelector = element.webkitMatchesSelector || element.mozMatchesSelector ||element.oMatchesSelector || element.matchesSelector</div><div class="line">    if (matchesSelector) return matchesSelector.call(element, selector)</div><div class="line"></div><div class="line">      //浏览器不支持MatchesSelector</div><div class="line">    var match, parent = element.parentNode, temp = !parent</div><div class="line"></div><div class="line">      //元素没有父元素，存入到临时的div tempParent（上面有声明）</div><div class="line">    if (temp) (parent = tempParent).appendChild(element)</div><div class="line"></div><div class="line">      //再通过父元素来搜索此表达式。  找不到-1  找到有索引从0开始</div><div class="line">    match = ~zepto.qsa(parent, selector).indexOf(element)</div><div class="line"></div><div class="line">    //清理临时父节点</div><div class="line">    temp &amp;&amp; tempParent.removeChild(element)</div><div class="line"></div><div class="line">      //返回匹配</div><div class="line">    return match</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>上面的方法我想说一下<br><code>match = ~zepto.qsa(parent, selector).indexOf(element)</code>按位取反符号<br>主要目的：因为matches的方法主要是为了查看当前元素能被指定的css选择器查找到，找到是true，否则是false，但是用indexOf的时候，找不到是-1（布尔值是true），找到是从所以0（布尔值是false）开始，但是我们需要的是true或false，所以借助取反符号~<code>作用是将值取负数再减1   如-1变成0（布尔值是false）  0变成-1（布尔值是true）</code>所以说对结果一目了然</p>
