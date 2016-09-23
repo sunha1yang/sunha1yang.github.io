@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Zepto源码解析2--整体架构 | 静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于文章的标题想了好久，不知道用什么，`zepto初始化？`，`zepto入口函数？`还是`zepto的原理`，最后还是决定用这个，因为看了别人写的关于jQuery的介绍，也是这个名字，但是说实话，我现在对Zepto的整体把握根本不足以说是整体架构，因为我才看了没多久，对于整体的架构，以及代码的思路根本称不上了解，目前只是初识，可是过一段时间肯定会越来越来熟悉，知道了解整个的脉络！今天的内容主要从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zepto源码解析2--整体架构">
+<meta property="og:url" content="http://yoursite.com/2016/09/23/Zepto源码解析2-整体架构/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="关于文章的标题想了好久，不知道用什么，`zepto初始化？`，`zepto入口函数？`还是`zepto的原理`，最后还是决定用这个，因为看了别人写的关于jQuery的介绍，也是这个名字，但是说实话，我现在对Zepto的整体把握根本不足以说是整体架构，因为我才看了没多久，对于整体的架构，以及代码的思路根本称不上了解，目前只是初识，可是过一段时间肯定会越来越来熟悉，知道了解整个的脉络！今天的内容主要从">
+<meta property="og:updated_time" content="2016-09-23T15:47:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zepto源码解析2--整体架构">
+<meta name="twitter:description" content="关于文章的标题想了好久，不知道用什么，`zepto初始化？`，`zepto入口函数？`还是`zepto的原理`，最后还是决定用这个，因为看了别人写的关于jQuery的介绍，也是这个名字，但是说实话，我现在对Zepto的整体把握根本不足以说是整体架构，因为我才看了没多久，对于整体的架构，以及代码的思路根本称不上了解，目前只是初识，可是过一段时间肯定会越来越来熟悉，知道了解整个的脉络！今天的内容主要从">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Zepto源码解析2-整体架构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zepto源码解析2--整体架构
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>关于文章的标题想了好久，不知道用什么，`zepto初始化？`，`zepto入口函数？`还是`zepto的原理`，最后还是决定用这个，因为看了别人写的关于jQuery的介绍，也是这个名字，但是说实话，我现在对Zepto的整体把握根本不足以说是整体架构，因为我才看了没多久，对于整体的架构，以及代码的思路根本称不上了解，目前只是初识，可是过一段时间肯定会越来越来熟悉，知道了解整个的脉络！今天的内容主要从以下几个方法来认识Zepto的整体架构
+</code></pre><hr>
+<a id="more"></a>
+<h2 id="function—-gt-Z"><a href="#function—-gt-Z" class="headerlink" title="function—&gt;Z"></a>function—&gt;Z</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    * 构造器</div><div class="line">    * @param dom</div><div class="line">    * @param selector</div><div class="line">    * @constructor</div><div class="line">    */</div><div class="line"></div><div class="line">function Z(dom, selector) &#123;</div><div class="line">   var i, len = dom ? dom.length : 0</div><div class="line">   for (i = 0; i &lt; len; i++) this[i] = dom[i]</div><div class="line">   this.length = len</div><div class="line">   this.selector = selector || &apos;&apos;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>简单的来看下：一个构造函数，有私有属性length和selector两个属性！</li>
+</ul>
+<hr>
+<h2 id="Z和isZ"><a href="#Z和isZ" class="headerlink" title="Z和isZ"></a>Z和isZ</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> zepto.Z = function(dom, selector) &#123;</div><div class="line">    return new Z(dom, selector)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">zepto.isZ = function(object) &#123;</div><div class="line">    return object instanceof zepto.Z</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>首先zepto是个对象，然后Z和isZ是zepto的两个属性，Z是用来返回一个一个Zepto对象的，然后可以调用zepto的属性和方法！</li>
+<li>感觉zepto.Z是Zepto的入口函数！通过调用zepto.Z来实现原生的DOM转换成可以操作的Zepto对象，那么究竟是怎么来实现的呢？看过下面的方法你就知道了！</li>
+</ul>
+<hr>
+<h2 id="zepto-init"><a href="#zepto-init" class="headerlink" title="zepto.init"></a>zepto.init</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">zepto.init = function(selector, context) &#123;</div><div class="line">    var dom</div><div class="line">    // If nothing given, return an empty Zepto collection</div><div class="line">    //如果未传参，返回空Zepto对象</div><div class="line">    if (!selector) return zepto.Z()</div><div class="line">    // Optimize for string selectors</div><div class="line"></div><div class="line">    //selector传进来的是字符串，即css表达式</div><div class="line">    else if (typeof selector == &apos;string&apos;) &#123;</div><div class="line">       //去掉空格</div><div class="line">      selector = selector.trim()</div><div class="line">      // If it&apos;s a html fragment, create nodes from it</div><div class="line">      // Note: In both Chrome 21 and Firefox 15, DOM error 12</div><div class="line">      // is thrown if the fragment doesn&apos;t begin with &lt;</div><div class="line">      //如果是以 &lt; 开头 ， 基本的HTML代码时</div><div class="line">      if (selector[0] == &apos;&lt;&apos; &amp;&amp; fragmentRE.test(selector))</div><div class="line">        //调用fragment方法生成dom</div><div class="line">        dom = zepto.fragment(selector, RegExp.$1, context), selector = null</div><div class="line">      // If there&apos;s a context, create a collection on that context first, and select</div><div class="line">      // nodes from there</div><div class="line">      //如果传递了上下文，在上下文中查找元素</div><div class="line">      else if (context !== undefined) return $(context).find(selector)</div><div class="line">      // If it&apos;s a CSS selector, use it to select nodes.</div><div class="line">      //通过css表达式查找元素</div><div class="line">      else dom = zepto.qsa(document, selector)</div><div class="line">    &#125;</div><div class="line">    // If a function is given, call it when the DOM is ready</div><div class="line">    //如果selector是函数，则在DOM ready的时候执行它</div><div class="line">    else if (isFunction(selector)) return $(document).ready(selector)</div><div class="line">    // If a Zepto collection is given, just return it</div><div class="line">    //如果selector是一个Zepto对象，返回它自己</div><div class="line">    else if (zepto.isZ(selector)) return selector</div><div class="line">    else &#123;</div><div class="line">      // normalize array if an array of nodes is given</div><div class="line">        //如果selector是数组，过滤null,undefined</div><div class="line">      if (isArray(selector)) dom = compact(selector)</div><div class="line">      // Wrap DOM nodes.</div><div class="line">      //如果selector是对象，将对象加入到一个数组中，然后我就不知道啥意思了</div><div class="line">      else if (isObject(selector))</div><div class="line">        dom = [selector], selector = null</div><div class="line">      // If it&apos;s a html fragment, create nodes from it</div><div class="line">      //如果selector是HTML代码，调用fragment方法转换成DOM节点</div><div class="line">      else if (fragmentRE.test(selector))</div><div class="line">        dom = zepto.fragment(selector.trim(), RegExp.$1, context), selector = null</div><div class="line">      // If there&apos;s a context, create a collection on that context first, and select</div><div class="line">      // nodes from there</div><div class="line">      //如果存在上下文，在上下文中查找selector</div><div class="line">      else if (context !== undefined) return $(context).find(selector)</div><div class="line">      // And last but no least, if it&apos;s a CSS selector, use it to select nodes.</div><div class="line">      //如果没有给定上下文，在document中查找selector</div><div class="line">      else dom = zepto.qsa(document, selector)</div><div class="line">    &#125;</div><div class="line">    // create a new Zepto collection from the nodes found</div><div class="line">    //将查询结果转换成Zepto对象</div><div class="line">    return zepto.Z(dom, selector)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>从上面的方法可以很明确的看出来zepto是如何来进行对dom的操作，以及根据什么样的规则来初始化或者说来查找一个DOM节点的（大体就是调用$(context).find(selector)，或者就是重新调用fragment方法来生成相应的DOM节点或者返回一个zepto对象）</li>
+</ul>
+<hr>
+<h2 id="的由来"><a href="#的由来" class="headerlink" title="$的由来"></a>$的由来</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ = function(selector, context)&#123;</div><div class="line">    return zepto.init(selector, context)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>就是这么来的！简单粗暴！</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><blockquote>
+<ol>
+<li>对内容了解不够透彻，不能大体的把我住整体的脉络，不知道从哪里下手的情况还是存在的，其实可以很明显的看出来，大体的内容只是在注释，而且有的注释自己还不是很明白，有时还需要借助一些工具来明白，或者看看别的介绍才能懂！不过这还不算完，因为我还会看第二遍，第三遍…知道全部ok，全部明白，全部清晰，全部会写的时候才停止！</li>
+<li>因为今天这个可能是zepto的核心的内容，但是我描述的以及自己的见解几乎没有，所以还是很尴尬！但是后期肯定会把这些重要的东西再重新总结，下次这篇文章一定会写得很漂亮！</li>
+</ol>
+</blockquote>
+<h3 id="下次的内容属是（zepto的选择器）"><a href="#下次的内容属是（zepto的选择器）" class="headerlink" title="下次的内容属是（zepto的选择器）"></a>下次的内容属是（zepto的选择器）</h3>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/09/23/Zepto源码解析2-整体架构/" class="archive-article-date">
+  	<time datetime="2016-09-23T15:45:18.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-23</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/18/Zepto源码解析-初识Zepto/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zepto源码解析--初识Zepto</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
