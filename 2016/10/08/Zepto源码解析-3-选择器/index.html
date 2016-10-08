@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Zepto源码解析(3)-选择器 | 静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Zepto的源码解析(3)—选择器zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zepto源码解析(3)-选择器">
+<meta property="og:url" content="http://yoursite.com/2016/10/08/Zepto源码解析-3-选择器/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="Zepto的源码解析(3)—选择器zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
+<meta property="og:updated_time" content="2016-10-08T01:41:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zepto源码解析(3)-选择器">
+<meta name="twitter:description" content="Zepto的源码解析(3)—选择器zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Zepto源码解析-3-选择器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zepto源码解析(3)-选择器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Zepto的源码解析-3-—选择器"><a href="#Zepto的源码解析-3-—选择器" class="headerlink" title="Zepto的源码解析(3)—选择器"></a>Zepto的源码解析(3)—选择器</h2><h3 id="zepto的选择器"><a href="#zepto的选择器" class="headerlink" title="zepto的选择器"></a>zepto的选择器</h3><pre><code>Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）
+</code></pre><a id="more"></a>
+<pre><code>那么$是怎么来的呢？上一篇的文章已经说了一下：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ = function (selector, context) &#123;</div><div class="line">    return zepto.init(selector, context)&#125;</div></pre></td></tr></table></figure>
+<pre><code>由上面的代码可以看到$实际就是zepto.init来实现的，所以我们只需要来明白init方法就可以，上一篇的文章介绍了init的方法，但是由于之前对zepto的了解有限，并不能将其连贯起来！
+那么init的方法到底是什么？第一个参数是selector！selector就是选择器的意思，第二个参数是 content，上下文的意思，由方法的代码（忘了的话之前一篇有）可以知道有以下几种逻辑处理：
+1. 如果selector不存在   return zepto.Z() 如果没有传递形参的话，返回一个空的zepto对象（zepto.Z之前也有过介绍）
+2.  如果selector是字符串，并且是以`&lt;`开头，那么会调用zepto.fragment（此方法之前也有介绍）来进行创建新的dom元素！
+3.  如果selector是字符串，且content不是undefined 那么 $(context).find(selector)（find方法稍后介绍） 如果，content是undefind那么 dom = zepto.qsa(document, selector)（qsa方法稍后介绍）
+4.  如果selector是函数的话，$(document).ready(selector)
+5.  如果selector是Zepto对象的话，直接返回（这个还是很有用的）
+6.  如果是数组的话，会讲null和undefined去掉（这里有个小细节处理就是默认的话：`null==undefined`）
+7.  如果是普通对象的话，会将其复制一份并且存入到一个数字中，最后的结果就是这样（[Object]）
+
+
+    由上面其实就可以看到zepto是如何来进行Dom元素的获取的，其实我们前端就是在玩Dom的，所以，还是感觉这个方法是最最核心的东西！几乎就是靠他来吃饭的！
+</code></pre><h3 id="find方法："><a href="#find方法：" class="headerlink" title="$.find方法："></a>$.find方法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">find: function (selector) &#123;</div><div class="line">      var result, $this = this</div><div class="line">      if (!selector) result = $()</div><div class="line">      else if (typeof selector == &apos;object&apos;)</div><div class="line">        result = $(selector).filter(function () &#123;</div><div class="line">          //这里的this是指向$(selector)</div><div class="line">          var node = this</div><div class="line">          return emptyArray.some.call($this, function (parent) &#123;</div><div class="line">            return $.contains(parent, node)</div><div class="line">          &#125;)</div><div class="line">        &#125;)</div><div class="line">      else if (this.length == 1) result = $(zepto.qsa(this[0], selector))</div><div class="line">      else result = this.map(function () &#123;</div><div class="line">          return zepto.qsa(this, selector)</div><div class="line">        &#125;)</div><div class="line">      return result</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<pre><code>看了看上面的代码，处理逻辑分为四种：
+    1. selector不存在，返回$()
+    2. selector是对象，通过筛选，得到对应有selector属性的Dom元素
+    3. 还有两种情况four执行了zepto.qsa方法，那么我们来看看这个方法
+</code></pre><h3 id="zepto-qsa方法："><a href="#zepto-qsa方法：" class="headerlink" title="zepto.qsa方法："></a>zepto.qsa方法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">zepto.qsa = function (element, selector) &#123;</div><div class="line">    var found,</div><div class="line">      maybeID = selector[0] == &apos;#&apos;,</div><div class="line">      maybeClass = !maybeID &amp;&amp; selector[0] == &apos;.&apos;,</div><div class="line">      nameOnly = maybeID || maybeClass ? selector.slice(1) : selector, // Ensure that a 1 char tag name still gets checked</div><div class="line">      isSimple = simpleSelectorRE.test(nameOnly)</div><div class="line">    return (element.getElementById &amp;&amp; isSimple &amp;&amp; maybeID) ? // Safari DocumentFragment doesn&apos;t have getElementById</div><div class="line">      ( (found = element.getElementById(nameOnly)) ? [found] : [] ) :</div><div class="line">      (element.nodeType !== 1 &amp;&amp; element.nodeType !== 9 &amp;&amp; element.nodeType !== 11) ? [] :</div><div class="line">        slice.call(</div><div class="line">          isSimple &amp;&amp; !maybeID &amp;&amp; element.getElementsByClassName ? // DocumentFragment doesn&apos;t have getElementsByClassName/TagName</div><div class="line">            maybeClass ? element.getElementsByClassName(nameOnly) : // If it&apos;s simple, it could be a class</div><div class="line">              element.getElementsByTagName(selector) : // Or a tag</div><div class="line">            element.querySelectorAll(selector) // Or it&apos;s not simple, and we need to query all</div><div class="line">        )</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<pre><code>我们来看一下这个方法，给人的感觉是乱乱哒，一堆的三元运算，各种萌萌哒，但是再仔细看的话还是挺简单的：
+1. 首先查看是`#`还是`.`,然后再来根据相应的来进行逻辑处理！
+2. 看看里面用到了querySelectorAll和getElementsByTagName和getElementById（对于safari进行了技术内容处理）
+只是看起来有点乱，实际就是获取dom
+</code></pre><h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><pre><code>以上其实对于zepto的选择器已经介绍完了，主要应用的还是querySelectorAll，getElementsByTagName，getElementById等几个方法，虽然有些少，但是已经完全够用了！
+搜了一下,zepto主要支持的选择器：
+基本选择器
+ID选择器：$(&quot;#foo&quot;)。
+class选择器：$(&quot;.foo&quot;)。
+标签(元素)选择器：$(&quot;div&quot;)、$(&quot;p&quot;)。
+通用选择器：$(&quot;*&quot;)。
+
+层级选择器
+后代选择器：$(&quot;foo bar&quot;)。
+子元素选择器：$(&quot;foo &gt; bar&quot;)。
+相邻且靠后选择器：$(&quot;foo + bar&quot;)。
+同辈且靠后选择器：$(&quot;foo ~ bar&quot;)。
+
+不支持的选择器
+基本伪类:first、:not(selector) 、:even 、:odd 、:eq(index) 、:gt(index) 、:lang1.9+ 、:last 、:lt(index) 、:header、:animated 、:focus1.6+ 、:root1.9+ 、:target1.9+。
+内容伪类：:contains(text) 、:empty、 :has(selector)、 :parent 。
+可见性伪类：:hidden 、:visible 。
+属性选择器：[attribute!=value]。
+表单伪类：:input、 :text、 :password、 :radio、 :checkbox、 :submit、 :image、 :reset、 :button、 :file、 :hidden 。
+表单对象属性：:selected。
+</code></pre><h3 id="下次的内容是（zepto中的正则）"><a href="#下次的内容是（zepto中的正则）" class="headerlink" title="下次的内容是（zepto中的正则）"></a>下次的内容是（zepto中的正则）</h3>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/08/Zepto源码解析-3-选择器/" class="archive-article-date">
+  	<time datetime="2016-10-08T01:41:14.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-08</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/08/Zepto源码解析-4-正则/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zepto源码解析(4)-正则</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
