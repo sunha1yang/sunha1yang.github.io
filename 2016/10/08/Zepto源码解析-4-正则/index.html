@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Zepto源码解析(4)-正则 | 静默花开</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Zepto的源码解析(4)—正则为什么写这篇文章在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速">
+  <meta name="description" content="为什么写这篇文章在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zepto源码解析(4)-正则">
 <meta property="og:url" content="http://yoursite.com/2016/10/08/Zepto源码解析-4-正则/index.html">
 <meta property="og:site_name" content="静默花开">
-<meta property="og:description" content="Zepto的源码解析(4)—正则为什么写这篇文章在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速">
-<meta property="og:updated_time" content="2016-10-08T01:43:25.000Z">
+<meta property="og:description" content="为什么写这篇文章在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速">
+<meta property="og:updated_time" content="2016-10-08T01:44:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zepto源码解析(4)-正则">
-<meta name="twitter:description" content="Zepto的源码解析(4)—正则为什么写这篇文章在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速">
+<meta name="twitter:description" content="为什么写这篇文章在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速">
   
     <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
   
@@ -146,7 +146,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Zepto的源码解析-4-—正则"><a href="#Zepto的源码解析-4-—正则" class="headerlink" title="Zepto的源码解析(4)—正则"></a>Zepto的源码解析(4)—正则</h2><h3 id="为什么写这篇文章"><a href="#为什么写这篇文章" class="headerlink" title="为什么写这篇文章"></a>为什么写这篇文章</h3><pre><code>在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速
+        <h3 id="为什么写这篇文章"><a href="#为什么写这篇文章" class="headerlink" title="为什么写这篇文章"></a>为什么写这篇文章</h3><pre><code>在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速
 </code></pre><a id="more"></a>
 <h4 id="那么什么是正则？正则是干什么的？"><a href="#那么什么是正则？正则是干什么的？" class="headerlink" title="那么什么是正则？正则是干什么的？"></a>那么什么是正则？正则是干什么的？</h4><pre><code>正则就是处理复杂的字符串的!
 1. 定义了一个字符串的模型

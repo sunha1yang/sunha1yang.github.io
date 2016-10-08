@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Zepto源码解析(3)-选择器 | 静默花开</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Zepto的源码解析(3)—选择器zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
+  <meta name="description" content="zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zepto源码解析(3)-选择器">
 <meta property="og:url" content="http://yoursite.com/2016/10/08/Zepto源码解析-3-选择器/index.html">
 <meta property="og:site_name" content="静默花开">
-<meta property="og:description" content="Zepto的源码解析(3)—选择器zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
-<meta property="og:updated_time" content="2016-10-08T01:41:26.000Z">
+<meta property="og:description" content="zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
+<meta property="og:updated_time" content="2016-10-08T01:44:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zepto源码解析(3)-选择器">
-<meta name="twitter:description" content="Zepto的源码解析(3)—选择器zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
+<meta name="twitter:description" content="zepto的选择器Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）">
   
     <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
   
@@ -146,7 +146,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Zepto的源码解析-3-—选择器"><a href="#Zepto的源码解析-3-—选择器" class="headerlink" title="Zepto的源码解析(3)—选择器"></a>Zepto的源码解析(3)—选择器</h2><h3 id="zepto的选择器"><a href="#zepto的选择器" class="headerlink" title="zepto的选择器"></a>zepto的选择器</h3><pre><code>Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）
+        <h3 id="zepto的选择器"><a href="#zepto的选择器" class="headerlink" title="zepto的选择器"></a>zepto的选择器</h3><pre><code>Zepto的选择器主要是有$来进行的：主要通过选择器来获取到dom元素，然后操作Dom元素（例如绑定事件，dom的样式操作，dom的属性操作等）
 </code></pre><a id="more"></a>
 <pre><code>那么$是怎么来的呢？上一篇的文章已经说了一下：
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ = function (selector, context) &#123;</div><div class="line">    return zepto.init(selector, context)&#125;</div></pre></td></tr></table></figure>
