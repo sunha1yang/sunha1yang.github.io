@@ -193,65 +193,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Zepto的源码解析-4-—正则"><a href="#Zepto的源码解析-4-—正则" class="headerlink" title="Zepto的源码解析(4)—正则"></a>Zepto的源码解析(4)—正则</h2><h3 id="为什么写这篇文章"><a href="#为什么写这篇文章" class="headerlink" title="为什么写这篇文章"></a>为什么写这篇文章</h3><pre><code>在看源码的时候，你会看到到处都是正则，为什么会这样？我认为主要是因为正则在处理复杂的字符串的时候更简洁,方便，快速
-</code></pre><h4 id="那么什么是正则？正则是干什么的？"><a href="#那么什么是正则？正则是干什么的？" class="headerlink" title="那么什么是正则？正则是干什么的？"></a>那么什么是正则？正则是干什么的？</h4><pre><code>正则就是处理复杂的字符串的!
-1. 定义了一个字符串的模型
-2. 验证其字符串是否和这个模型匹配
-3. 把匹配到的内容提取出来
-</code></pre><h4 id="如何定义个一个正则？"><a href="#如何定义个一个正则？" class="headerlink" title="如何定义个一个正则？"></a>如何定义个一个正则？</h4><pre><code>1. var reg = / you happy jiu  ok/igm (字面量)
-2. var reg = new RegExp（&apos;you happy jiu  ok&apos;,&apos;igm&apos;）（构造函数）
-</code></pre><h4 id="正则的一些小知识"><a href="#正则的一些小知识" class="headerlink" title="正则的一些小知识"></a>正则的一些小知识</h4><blockquote>
-<p>修饰符<br>  i：匹配时忽略大小写<br>  g：全局查询<br>  m：多行匹配<br>  es6新增加的修饰符<br>  u：即Unicode模式”，用来正确处理大于\uFFFF的Unicode字符。也就是说，会正确处理四个字节的UTF-16编码。<br>  y：粘连（sticky）修饰符</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>正则的两大特性</p>
-<ol>
-<li>懒惰型<br>这里需要说一下正则的查找机制：主要的是依赖于lastIndex来查找的，从0开始，但是由于正则的懒惰型，每次查找都是从0开始的，所以一直会是同一个匹配的东西<br>解决办法：添加全局修饰符：g，每次查找lastIndex都是上一次匹配的位置开始继续查找</li>
-</ol>
-</blockquote>
-<ol>
-<li>贪婪性<br>如果添加了量词修饰符，匹配的时候回尽可能多的去匹配<br>解决办法：在量词后面添加<code>?</code></li>
-</ol>
-<hr>
-<blockquote>
-<p>正则中括号的用法</p>
-<ol>
-<li>提高优先级</li>
-<li>分组</li>
-<li>（？:）只捕获不匹配（挺重要的）</li>
-</ol>
-<hr>
-<p>正则中的中括号</p>
-<ol>
-<li>中括号出现的字符没有任何特殊的含义（正则里有一些字母有特殊的含义元字符，量词元字符等，如果想匹配其本身的话都需要进行转义<code>\</code>，在构造函数中需要转义的是：\）</li>
-<li>中括号中不支持两位数</li>
-</ol>
-<hr>
-<p>正则中问号</p>
-<ol>
-<li><code>？</code>量词，0次或一次（）可有可无</li>
-<li>放在量词后面就是用来解决正则的贪婪性</li>
-<li>（？:）只捕获不匹配</li>
-</ol>
-</blockquote>
-<hr>
-<hr>
-<blockquote>
-<p>常常和正则搭配的方法：（1、2是正则的方法，其他都是字符串的）</p>
-<ol>
-<li>test：测试是否满足于当前的正则表达式</li>
-<li>exec：捕获满足于当前正则表达式的字符串的内容</li>
-<li>match：将满足于正则表达式的内容提取出来，没有全局修饰符g的时候和exec没什么区别</li>
-<li>replace：将满足于正则的内容替换掉（第一个参数是正则，第二个可以是替换的内容或者是个回调函数）</li>
-<li>split：以正则的规则将字符串进行拆分</li>
-<li>serach：查询满足当前正则的字段</li>
-</ol>
-</blockquote>
-<h4 id="以上说的都是大体的，像具体元字符等都没有细说，只是说一下我在学习过程中，以及平时容易遇到的常见东西，想更具体的学习可以多看一下基础的文档"><a href="#以上说的都是大体的，像具体元字符等都没有细说，只是说一下我在学习过程中，以及平时容易遇到的常见东西，想更具体的学习可以多看一下基础的文档" class="headerlink" title="以上说的都是大体的，像具体元字符等都没有细说，只是说一下我在学习过程中，以及平时容易遇到的常见东西，想更具体的学习可以多看一下基础的文档 ^_^"></a>以上说的都是大体的，像具体元字符等都没有细说，只是说一下我在学习过程中，以及平时容易遇到的常见东西，想更具体的学习可以多看一下基础的文档 ^_^</h4><h3 id="正题：zepto中的正则"><a href="#正题：zepto中的正则" class="headerlink" title="正题：zepto中的正则"></a>正题：zepto中的正则</h3><p>我讲zepto中的正则都找出来然后加以分析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">fragmentRE = /^\s*&lt;(\w+|!)[^&gt;]*&gt;/,//匹配HTML代码</div><div class="line">  singleTagRE = /^&lt;(\w+)\s*\/?&gt;(?:&lt;\/\1&gt;|)$/,//匹配单个HTML标签(这里在最后的位置的 \1的意思：和第一个小括号内容一样)</div><div class="line">  tagExpanderRE = /&lt;(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^&gt;]*)\/&gt;/ig,//匹配自闭合标签</div><div class="line">  rootNodeRE = /^(?:body|html)$/i,//匹配根节点</div><div class="line">  capitalRE = /([A-Z])/g,//匹配A-Z</div><div class="line"></div><div class="line">  str.replace(/::/g, &apos;/&apos;) //将：：替换成/</div><div class="line">   .replace(/([A-Z]+)([A-Z][a-z])/g, &apos;$1_$2&apos;) //在大小写字符之间插入_,大写在前，比如AAAbb,得到AA_Abb</div><div class="line">     .replace(/([a-z\d])([A-Z])/g, &apos;$1_$2&apos;)  //在大小写字符之间插入_,小写或数字在前，比如bbbAaa,得到bbb_Aaa</div><div class="line">     .replace(/_/g, &apos;-&apos;)  //将_替换成-</div><div class="line">     .toLowerCase()   //转成小写</div><div class="line"></div><div class="line">  new RegExp(&apos;(^|\\s)&apos; + name + &apos;(\\s|$)&apos;)) //创建以变量name的正则表达式</div></pre></td></tr></table></figure></p>
-<p>在zepto中还有很多类似的，但是大体的实现都是一样的，我就不一一说了！</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><pre><code>写这篇文章的主要目的就是说一下要合理的运用正则，它真的很强大！
-学好了会有非常非常大的帮助！！！
-</code></pre><h3 id="下次的内容是（zepto的常用api）"><a href="#下次的内容是（zepto的常用api）" class="headerlink" title="下次的内容是（zepto的常用api）"></a>下次的内容是（zepto的常用api）</h3>
+</code></pre>
+        <p class="article-more-link">
+          <a  href="/2016/10/08/Zepto源码解析-4-正则/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
