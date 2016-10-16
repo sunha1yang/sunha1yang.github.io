@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>观察者模式 | 静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###什么是观察者模式？
+
+高程三：
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;观察者模式由两类对象组成：主体和观察者。主体主要负责发布事件，同时观察者通过订阅这些时间来观察主体。该模式的一个关键概念是主体并不知道观察者的任何事情，也就是说它可以对存在并正常运作即使观察者不存在。从另一个方面来说，观察者知道主体并能注册时间的回调函数（事件处理程序）。（说了一堆，萌萌哒，满脸懵逼）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="观察者模式">
+<meta property="og:url" content="http://yoursite.com/2016/10/16/观察者模式/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="###什么是观察者模式？
+
+高程三：
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;观察者模式由两类对象组成：主体和观察者。主体主要负责发布事件，同时观察者通过订阅这些时间来观察主体。该模式的一个关键概念是主体并不知道观察者的任何事情，也就是说它可以对存在并正常运作即使观察者不存在。从另一个方面来说，观察者知道主体并能注册时间的回调函数（事件处理程序）。（说了一堆，萌萌哒，满脸懵逼）">
+<meta property="og:updated_time" content="2016-10-16T08:47:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="观察者模式">
+<meta name="twitter:description" content="###什么是观察者模式？
+
+高程三：
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;观察者模式由两类对象组成：主体和观察者。主体主要负责发布事件，同时观察者通过订阅这些时间来观察主体。该模式的一个关键概念是主体并不知道观察者的任何事情，也就是说它可以对存在并正常运作即使观察者不存在。从另一个方面来说，观察者知道主体并能注册时间的回调函数（事件处理程序）。（说了一堆，萌萌哒，满脸懵逼）">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      观察者模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###什么是观察者模式？</p>
+<ul>
+<li><strong>高程三：</strong><blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;观察者模式由两类对象组成：主体和观察者。主体主要负责发布事件，同时观察者通过订阅这些时间来观察主体。该模式的一个关键概念是主体并不知道观察者的任何事情，也就是说它可以对存在并正常运作即使观察者不存在。从另一个方面来说，观察者知道主体并能注册时间的回调函数（事件处理程序）。（说了一堆，萌萌哒，满脸懵逼）</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><strong>道听途说：</strong><blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;封装的自定义事件，模拟<code>addEventListener</code>来写的,<code>addEventListener</code>这个方法它就是一个接口，它把<code>click</code>所表示的这个行为，和<code>fn</code>这个行为联系在一起了，有了<code>addEventListener</code>这个方法，就可以实现当<code>click</code>事件发生的时候，<code>fn</code>也发生!<br>&ensp;&ensp;&ensp;&ensp;<code>观察者模式</code>像addEventListener一样，来解决两个不同的事（行为、function）之间的协作（A发生则B随着A的发生而发生，简言之就是A执行，则B就会执行）—-以拖拽为例：</p>
+<ol>
+<li>down，move,up看成是主体行为.</li>
+<li>把约定down,move,up的方法看成仆从行为</li>
+<li>on,run是down,move,up的秘书</li>
+<li>on就负责登记记录约定某一个行为的其它行为</li>
+<li>run负责当某一个行为发生的时候，去通知由on已经登记好的那些行为,run什么时候通知（执行）</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><strong>我说：</strong><blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;我总感觉观察者是一种管理模式，为了方便管理。可以保持主线的内容不受支线内容的破坏，而且我可以随便写支线内容，想怎么玩就怎么玩，而且我想清除掉的时候就必须清除掉,拿个烧水例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">function noodles(e)&#123;</div><div class="line">    console.log(&quot;煮面条&quot;,&quot;此时此刻的煮面条是由&quot;+e.message+&quot;触发的&quot;);</div><div class="line">&#125;</div><div class="line">function drink()&#123;</div><div class="line">    console.log(&quot;喝水&quot;);</div><div class="line">&#125;</div><div class="line">function bath()&#123;</div><div class="line">    console.log(&quot;洗澡&quot;);</div><div class="line">&#125;</div><div class="line">//普通的形式</div><div class="line">Kettle.prototype.boiling=function()&#123;</div><div class="line">    var that=this;</div><div class="line">    window.setTimeout(function()&#123;</div><div class="line">        console.log(&quot;水开了！&quot;);//等了一万年水终于开了，我要开始泡面了，喝汤了，洗澡了</div><div class="line">        noodles()；</div><div class="line">        drink();</div><div class="line">        bath();</div><div class="line">        //....还有很多！</div><div class="line">        //可是在我要泡面的时候、朋友说请吃大餐，那特么谁还吃面条子，肯定吃大餐呀，然后就得清除掉我刚刚写的东西，一件件的删除！你可以试想一下，在项目中，如果代码量特别多，要修改的地方特别多，你这样写的话得改多久，改的时候肯定会骂街，说一些（！@#！￥！@#%#@￥！%！@）的话；</div><div class="line">    &#125;,6000);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">订阅发布模式呢？</div><div class="line">Kettle.prototype.boiling=function()&#123;</div><div class="line">    var e=&#123;type:&quot;boiling&quot;,message:&quot;kettle-boiling&quot;&#125;;</div><div class="line">    var that=this;</div><div class="line">    window.setTimeout(function()&#123;</div><div class="line">        console.log(&quot;水开了！&quot;);</div><div class="line">        that.run();//run通知绑定的事件执行</div><div class="line">    &#125;,6000);</div><div class="line">&#125;;</div><div class="line">var kettle1=new Kettle;</div><div class="line">kettle1.on(&quot;boiling&quot;,noodles);</div><div class="line">kettle1.on(&quot;boiling&quot;,drink);</div><div class="line">kettle1.on(&quot;boiling&quot;,bath);</div><div class="line">//把我要做的事提前订阅好，静等水开，然后我干我要做的事，当然在这个时候你也可以盼望有人请你吃大餐，因为修改行程很简单，我有秘书，有事秘书干！</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>这样就是我理解的哈我！感觉拖拽就是最好诠释观察者模式的例子，下面我从几个方面说一下这个</p>
+</blockquote>
+<h3 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h3><h4 id="第一个版本（面向对象版）："><a href="#第一个版本（面向对象版）：" class="headerlink" title="第一个版本（面向对象版）："></a>第一个版本（面向对象版）：</h4><blockquote>
+<p>要用面向对象封装东西肯定要明白几点规则</p>
+<ol>
+<li>this的指向。则是类的方法，this都要指向这个类当前的实例</li>
+<li>一个类就是一个具体完整功能的模块（这个在学完node应该理解的更深了吧），这个模块（类）上定义了此功用所需要所有的属性和方法</li>
+<li>我们在定义这个类的时候，最其码要实现它的最基本的功能。还要留好扩展的余地，以便升级</li>
+<li>把全局变量都作为私有属性</li>
+<li>全局函数都作为公有方法</li>
+<li>注意constructor指向（这个写不写分情况哈，啥时候写自己想吧）</li>
+<li>init（）初始化函数中，就是我们代码执行的思路<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line">    function MyEvent() &#123;//封装事件库，方便添加自定义事件用！得写两个，理论上可以合并的！！</div><div class="line">    &#125;</div><div class="line">    MyEvent.prototype.on = function (type, fn) &#123;//订阅事件</div><div class="line">        if (!this[&quot;myEvent&quot; + type]) &#123;</div><div class="line">            this[&quot;myEvent&quot; + type] = [];</div><div class="line">        &#125;</div><div class="line">        var ary = this[&quot;myEvent&quot; + type];</div><div class="line">        for (var i = 0, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">            if (ary[i] == fn)return;</div><div class="line">        &#125;</div><div class="line">        ary.push(fn)</div><div class="line">    &#125;;</div><div class="line">    MyEvent.prototype.run = function (myE, sysE) &#123;</div><div class="line">        var ary = this[&quot;myEvent&quot; + myE.type];</div><div class="line">        if (ary) &#123;</div><div class="line">            for (var i = 0, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">                if (typeof ary[i] === &quot;function&quot;) &#123;</div><div class="line">                    ary[i].call(this, myE, sysE)</div><div class="line">                &#125; else &#123;</div><div class="line">                    ary.splice(i, 1);//用splice的时候一定要记住，`数组会坍塌``数组会坍塌``数组会坍塌`</div><div class="line">                    i--;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    MyEvent.prototype.off = function (type, fn) &#123;</div><div class="line">        var ary = this[&quot;myEvent&quot; + type];</div><div class="line">        if (ary) &#123;</div><div class="line">            for (var i = 0, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">                if (ary[i] == fn) &#123;</div><div class="line">                    ary[i] = null;</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    function on(ele, type, fn) &#123;//事件的on，run，off！！</div><div class="line">        return ele.addEventListener(type, fn, false);</div><div class="line">    &#125;</div><div class="line">    function off(ele, type, fn) &#123;</div><div class="line">        return ele.removeEventListener(type, fn, false);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">开始拖拽了哈！！！</div><div class="line">function Drag(ele) &#123;</div><div class="line">        this.ele = ele;</div><div class="line">        this.x = null;</div><div class="line">        this.y = null;</div><div class="line">        this.l = null;</div><div class="line">        this.t = null;</div><div class="line">        this.DOWN = this.down.bind(this);//只是简单的注释掉了这一行，为啥会死掉？从这可以考虑看看在封装构造函数的时候，注意哪些东西？</div><div class="line">        this.MOVE = this.move.bind(this);</div><div class="line">        this.UP = this.up.bind(this);</div><div class="line">        on(ele, &quot;mousedown&quot;, this.DOWN);</div><div class="line">    &#125;</div><div class="line">    //继承</div><div class="line">    Drag.prototype = new MyEvent();//这种继承有啥缺点？还有那种继承？    Drag.prototype.down = function (e) &#123;</div><div class="line">        this.x = e.pageX;</div><div class="line">        this.y = e.pageY;</div><div class="line">        this.l = this.ele.offsetLeft;</div><div class="line">        this.t = this.ele.offsetTop;</div><div class="line">        on(document, &quot;mousemove&quot;, this.MOVE);</div><div class="line">        on(document, &quot;mouseup&quot;, this.UP);//为啥不是this.on？？？</div><div class="line">        this.on(&quot;dragstart&quot;,this.addBorder);//为啥是this.on？？？</div><div class="line">        this.run.call(this, &#123;type: &quot;dragstart&quot;&#125;);//如果你明白上两个问题，可是问题又来了！！为啥只需要绑定一次run，我可是明明on了两个方法的？？？！！</div><div class="line">        e.preventDefault();//为啥加这个！！？</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.move = function (e) &#123;</div><div class="line">        this.ele.style.left = e.pageX - this.x + this.l + &quot;px&quot;;</div><div class="line">        this.ele.style.top = e.pageY - this.y + this.t + &quot;px&quot;;</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.up = function () &#123;</div><div class="line">        off(document, &quot;mousemove&quot;, this.MOVE);</div><div class="line">        off(document, &quot;mouseup&quot;, this.UP);</div><div class="line">        this.on(&quot;dragend&quot;,removeBorder);//为啥没有移除掉border呢？？什么bug？</div><div class="line">        this.run.call(this, &#123;type: &quot;dragend&quot;&#125;);//为什么在这里添加自定义事件的run，不加不行么？为啥是this.run？</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.backG = function () &#123;</div><div class="line">        this.on(&quot;dragstart&quot;, this.addBac);//绑定自定义事件</div><div class="line">        this.on(&quot;dragend&quot;, this.removeBac);//解除绑定</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.addBac = function () &#123;</div><div class="line">        console.log(this);</div><div class="line">        this.ele.style.background = &quot;pink&quot;;//这个里为什么要写this.ele ！！！这里的this打印出来明明是div，为什么我不写ele不能出效果？---会更深的体会到构造函数的注意事项（反正我是感觉到了）</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.removeBac = function () &#123;</div><div class="line">        this.ele.style.background = &quot;green&quot;</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.addBorder=function()&#123;</div><div class="line">        this.ele.style.border=&quot;2px dashed yellow&quot;;</div><div class="line">    &#125;;</div><div class="line">    Drag.prototype.removeBorder=function()&#123;</div><div class="line">        this.ele.style.border=&quot;none&quot;;</div><div class="line">    &#125;;</div><div class="line">    var oDiv = document.getElementById(&quot;div&quot;);</div><div class="line">    var a = new Drag(oDiv);</div><div class="line">    a.backG();//这里为什么还要运行一下，不运行不行么？明明都绑定了！！！</div><div class="line">    //上面那种继承的缺点：会覆盖原来的Kettle类默认的原型对象，并且这种继承方法只能写在定义原型方法之前</div><div class="line">    //Drag.prototype.__proto__=myEvent.prototype;//有兼容问题，但是更安全，并且此行表达式的位置不限</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<hr>
+<hr>
+<p>####第二个版本（高程三）：</p>
+<blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;这个版本我在高程三上看的，可以自己去看看哈（但是我建议直接看我的，因为<code>高程三</code>上的凭空少内容，为了找到它缺少的东西我看了好多遍）这个版本就自己琢磨琢磨吧，不过我会说一下我对这个版本的理解！！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div></pre></td><td class="code"><pre><div class="line">function EventTarget() &#123;</div><div class="line">        this.handlers = &#123;&#125;;//为什么我在第一版没有这个？</div><div class="line">    &#125;</div><div class="line">    EventTarget.prototype = &#123;//自定义事件</div><div class="line">        constructor: EventTarget,//为啥写这个？</div><div class="line">        on: function (type, fn) &#123;</div><div class="line">            if (!this.handlers[type]) &#123;</div><div class="line">                this.handlers[type] = [];</div><div class="line">            &#125;</div><div class="line">            var ary = this.handlers[type];</div><div class="line">            for (var i = 0, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">                if (ary[i] == fn)return;</div><div class="line">            &#125;</div><div class="line">            this.handlers[type].push(fn);</div><div class="line">        &#125;,</div><div class="line">        fire: function (event) &#123;//这里的event是个对象！！</div><div class="line">            if (!event.target) &#123;</div><div class="line">                event.target = this;            &#125;</div><div class="line">            var ary = this.handlers[event.type];</div><div class="line">            if (this.handlers[event.type]  instanceof  Array) &#123;                for (var i = 0, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">                    ary[i].call(this, event)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        off: function (type, fn) &#123;</div><div class="line">            var ary = this.handlers[type];</div><div class="line">            if (ary) &#123;</div><div class="line">                for (var i = 0, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">                    if (ary[i] == fn) &#123;</div><div class="line">                        //ary.splice(i,1);//为啥在这删除不可以？会发生什么？</div><div class="line">                        break;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                ary.splice(i, 1);//结合上个问题感受下</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    //EventUtil是事件的on,run,off。用单例模式写的！</div><div class="line">    EventUtil = &#123;</div><div class="line">        on: function (ele, type, fn) &#123;</div><div class="line">            if (ele.addEventListener) &#123;</div><div class="line">                return ele.addEventListener(type, fn, false)</div><div class="line">            &#125;</div><div class="line">            if (!ele[&quot;myEvent&quot; + type]) &#123;</div><div class="line">                ele[&quot;myEvent&quot; + type] = [];</div><div class="line">                ele.attachEvent(&quot;on&quot; + type, function () &#123;</div><div class="line">                    run.call(ele);</div><div class="line">                &#125;)</div><div class="line">            &#125;</div><div class="line">            var ary = ele[&quot;myEvent&quot; + type];</div><div class="line">            for (var i = 0; i &lt; ary.length; i++) &#123;</div><div class="line">                if (ary[i] == fn) &#123;</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            ary.push(fn);</div><div class="line">        &#125;,</div><div class="line">        run: function () &#123;</div><div class="line">            var e = window.event;</div><div class="line">            var type = e.type;</div><div class="line">            if (!e.target) &#123;</div><div class="line">                e.target = e.srcElement;</div><div class="line">                e.stopPropagation = function () &#123;</div><div class="line">                    e.cancelBubble = true</div><div class="line">                &#125;;</div><div class="line">                e.preventDefault = function () &#123;</div><div class="line">                    e.returnValue = false;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            var ary = ele[&quot;myEvent&quot; + type];</div><div class="line">            if (ary) &#123;</div><div class="line">                for (var i = 0; i &lt; ary.length; i++) &#123;</div><div class="line">                    if (typeof  ary[i] === &quot;function&quot;) &#123;</div><div class="line">                        ary[i].call(this, e)</div><div class="line">                    &#125; else &#123;</div><div class="line">                        ary.splice(i, 1);</div><div class="line">                        i--;//在用splice的时候 一定要记得数组会塌陷、、、</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        off: function (ele, type, fn) &#123;</div><div class="line">            if (ele.removeEventListener) &#123;</div><div class="line">                ele.removeEventListener(type, fn, false);</div><div class="line">                return</div><div class="line">            &#125;</div><div class="line">            var ary = ele[&quot;myEvent&quot; + type];</div><div class="line">            if (ary) &#123;</div><div class="line">                for (var i = 0; i &lt; ary.length; i++) &#123;</div><div class="line">                    if (ary[i] === fn) &#123;</div><div class="line">                        ary[i] = null;</div><div class="line">                        return</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    //开始拖拽了哈</div><div class="line">    var DragDrop = function () &#123;</div><div class="line">        var dragging = null;</div><div class="line">        function handleEvent(event) &#123;</div><div class="line">            switch (event.type) &#123;//确定事件类型</div><div class="line">                case &quot;mousedown&quot;:</div><div class="line">                    if (event.target.className.indexOf(&quot;draggable&quot;) &gt; -1) &#123;//这个不错，通过判断这个事件源上是否有这个属性，有的话，就可以拖拽---偶然看到angular有这个，下面也会把angular的版本写进来</div><div class="line">                        dragging = event.target;//获取事件源</div><div class="line">                        dragging.x = event.clientX;//这个可以考虑下，因为我在写的时候这遇到问题了，我说下我的思路哈（我是直接var的这几个变量，可是不行！原因是啥，为什么咱们普通的版本的可以var，还有第一版把这些放在哪了？）</div><div class="line">                        dragging.y = event.clientY;</div><div class="line">                        dragging.l = dragging.offsetLeft;</div><div class="line">                        dragging.t = dragging.offsetTop;</div><div class="line">                    &#125;</div><div class="line">                    break;</div><div class="line">                case &quot;mousemove&quot;:</div><div class="line">                    if (dragging !== null) &#123;</div><div class="line">                        dragging.style.left = event.clientX - dragging.x + dragging.l + &quot;px&quot;;</div><div class="line">                        dragging.style.top = event.clientY - dragging.y + dragging.t + &quot;px&quot;;</div><div class="line">                    &#125;</div><div class="line">                    break;</div><div class="line">                case &quot;mouseup&quot;:</div><div class="line">                    dragging = null;</div><div class="line">                    break</div><div class="line">            &#125;</div><div class="line">            event.preventDefault();</div><div class="line">        &#125;</div><div class="line">        return &#123;//公共接口</div><div class="line">            enable: function () &#123;</div><div class="line">                EventUtil.on(document, &quot;mousedown&quot;, handleEvent);</div><div class="line">                EventUtil.on(document, &quot;mousemove&quot;, handleEvent);</div><div class="line">                EventUtil.on(document, &quot;mouseup&quot;, handleEvent)</div><div class="line">            &#125;,</div><div class="line">            disable: function () &#123;</div><div class="line">                EventUtil.off(document, &quot;mousedown&quot;, handleEvent);</div><div class="line">                EventUtil.off(document, &quot;mousemove&quot;, handleEvent);</div><div class="line">                EventUtil.off(document, &quot;mouseup&quot;, handleEvent)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;();</div><div class="line">    DragDrop.enable();//只要写了这行代码，就可以实现拖拽了</div><div class="line">    //DragDrop.disable();</div></pre></td></tr></table></figure></p>
+<p>说下我对这个版本的理解哈：</p>
+<p>优点：</p>
+<ol>
+<li>这个是用<code>单例模式</code>写的，每个方法都是<code>模块</code>和<code>模块</code>之间调用的！</li>
+<li>自定义事件的<code>off</code>的方法比较新（反正我是这么觉得的）</li>
+<li>绑定的是<code>document</code>，并且只要有<code>draggable</code>的属性就可以实现拖拽！—<code>angular</code>的拖拽是不是就是通过<code>A</code>–（<code>Attribute</code>）来找的</li>
+<li>公共接口这个接触的少，可以试着去看看（其实我是不懂的！）</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>添加<code>自定义事件</code>的时候没有<code>构造函数</code>方便，<code>不</code>方便管理！</li>
+<li>如果<code>移除</code>的话，会把<code>所有</code>的<code>拖拽</code>事件<code>都移除掉</code>！</li>
+</ol>
+</blockquote>
+<hr>
+<h4 id="第三版本（angular）："><a href="#第三版本（angular）：" class="headerlink" title="第三版本（angular）："></a>第三版本（angular）：</h4><blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;说实话这个版本我不想在说啥了哈<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&apos;appModule&apos;, []);</div><div class="line">    app.directive(&quot;mydrag&quot;, function () &#123;</div><div class="line">        return &#123;</div><div class="line">            restrict: &apos;A&apos;,</div><div class="line">            link: function (scope, element, attrs) &#123;</div><div class="line">                element.on(&quot;mousedown&quot;, function (e) &#123;</div><div class="line">                    var l = e.pageX - element[0].offsetLeft,</div><div class="line">                            t = e.pageY - element[0].offsetTop;</div><div class="line">                    angular.element(document).on(&quot;mousemove&quot;, function (e) &#123;</div><div class="line">                        element.css(&quot;left&quot;, (e.pageX - l) + &quot;px&quot;);</div><div class="line">                        element.css(&quot;top&quot;, (e.pageY - t) + &quot;px&quot;);</div><div class="line">                    &#125;);</div><div class="line">                    angular.element(document).on(&quot;mouseup&quot;, function () &#123;</div><div class="line">                        angular.element(document).off()</div><div class="line">                    &#125;);</div><div class="line">                    e.preventDefault();</div><div class="line">                &#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">不用找注释，因为一点都没有！！！如果你熟悉angular，你肯定会了解的！！！</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<p>###总结：</p>
+<h3 id="观察者模式是啥呢？"><a href="#观察者模式是啥呢？" class="headerlink" title="观察者模式是啥呢？"></a><code>观察者模式</code>是啥呢？</h3><ol>
+<li>在观察者模式由两个词出现的最多，<code>订阅</code>，<code>发布</code>!<ul>
+<li>什么是<code>订阅</code>?<br>&ensp;&ensp;&ensp;&ensp;在主线任务上，把我要执行的别的事先<code>添加</code>到主线任务上！</li>
+<li>什么是<code>发布</code>？<br>&ensp;&ensp;&ensp;&ensp;在主线任务执行的时候，会把我之前添加到主线任务上的事也给执行了</li>
+</ul>
+<ol>
+<li>那么高程三里的观察者由两类<code>对象</code>组成：<code>主体</code> <code>观察者</code>！</li>
+</ol>
+<ul>
+<li>什么是<code>主体</code>？<br>&ensp;&ensp;&ensp;&ensp;主体是观察者观察的对象（看到这句话是不是想揍我？对，没错，就是废话）—-（我认为就是事件主干，代码核心内容）</li>
+<li><code>主体</code>应该具备的三个特性：</li>
+</ul>
+<ol>
+<li>持有监听的观察者的引用</li>
+<li>支持增加和删除观察者</li>
+<li>主题状态改变，通知观察者</li>
+</ol>
+<ul>
+<li>什么是<code>观察者</code>？<br>&ensp;&ensp;&ensp;&ensp;当主体发生变化，收到通知进行具体的处理是观察者必须具备的特征。（百度的自己去理解）—-（就是一些我想增加的额外的一些方法，当然最主要得实现我想加就加，想删除就删除想法）</li>
+<li>观察者模式的好处：</li>
+</ul>
+<ol>
+<li>观察者增加或删除无需修改主体的代码，只需调用主体对应的增加或者删除的方法即可。</li>
+<li>主体只负责通知观察者，但无需了解观察者如何处理通知。举个例子，送奶站只负责送递牛奶，不关心客户是喝掉还是洗脸（当然也可以洗脚）。</li>
+<li>观察者只需等待主体通知，无需观察主体相关的细节。还是那个例子，客户只需关心送奶站送到牛奶，不关心牛奶由哪个快递人员，使用何种交通工具送达。</li>
+</ol>
+</li>
+</ol>
+<hr>
+<p>End&amp;Thank</p>
+<hr>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/16/观察者模式/" class="archive-article-date">
+  	<time datetime="2016-10-16T08:46:32.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-16</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/16/Zepto的源码解析-5-常用API/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zepto的源码解析(5)-常用API</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

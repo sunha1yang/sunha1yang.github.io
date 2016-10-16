@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Zepto的源码解析(5)-常用API | 静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习一个框架我们我们要知道大体的实现原理，这个框架是干什么的，以及最重要的是要知道如何使用这个框架！那么zepto如何来使用呢？zepto为我们提供了很多api，我接下来主要介绍一下zepto常用的api！（只是介绍大概的API，以后会根据分类一点一点分析）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zepto的源码解析(5)-常用API">
+<meta property="og:url" content="http://yoursite.com/2016/10/16/Zepto的源码解析-5-常用API/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="学习一个框架我们我们要知道大体的实现原理，这个框架是干什么的，以及最重要的是要知道如何使用这个框架！那么zepto如何来使用呢？zepto为我们提供了很多api，我接下来主要介绍一下zepto常用的api！（只是介绍大概的API，以后会根据分类一点一点分析）">
+<meta property="og:updated_time" content="2016-10-16T08:45:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zepto的源码解析(5)-常用API">
+<meta name="twitter:description" content="学习一个框架我们我们要知道大体的实现原理，这个框架是干什么的，以及最重要的是要知道如何使用这个框架！那么zepto如何来使用呢？zepto为我们提供了很多api，我接下来主要介绍一下zepto常用的api！（只是介绍大概的API，以后会根据分类一点一点分析）">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Zepto的源码解析-5-常用API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zepto的源码解析(5)-常用API
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习一个框架我们我们要知道大体的实现原理，这个框架是干什么的，以及最重要的是要知道如何<code>使用</code>这个框架！那么zepto如何来使用呢？zepto为我们提供了很多api，我接下来主要介绍一下zepto常用的api！（只是介绍大概的API，以后会根据分类一点一点分析）</p>
+<a id="more"></a>
+<h3 id="Zepto-Core"><a href="#Zepto-Core" class="headerlink" title="Zepto Core"></a>Zepto Core</h3><p>这个API下主要包含了一些zepto常用的一些方法，下面介绍几种常见的（不会说源码，只是简单介绍一下）</p>
+<ol>
+<li><p>$（）<br>上一篇已经具体说过，这里只是简单说下：<br>官方话：通过执行css选择器，包装dom节点，或者通过一个html字符串创建多个元素 来创建一个Zepto集合对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$(&apos;div&apos;)  //=&gt; 所有页面中得div元素</div><div class="line">$(&apos;#foo&apos;) //=&gt; ID 为 &quot;foo&quot; 的元素</div><div class="line">以上两种情况是通过css选择来获取页面的所有dom节点！注意：1、获取的是zepto对象，可以使用zepto对象上的方法和属性！2、获取到的是一个集合（数组）</div><div class="line"></div><div class="line">// 创建元素:</div><div class="line">$(&quot;&lt;p&gt;Hello&lt;/p&gt;&quot;) //=&gt; 新的p元素</div><div class="line">// 创建带有属性的元素:</div><div class="line">$(&quot;&lt;p /&gt;&quot;, &#123; text:&quot;Hello&quot;, id:&quot;greeting&quot;, css:&#123;color:&apos;darkblue&apos;&#125; &#125;)</div><div class="line">//=&gt; &lt;p id=greeting style=&quot;color:darkblue&quot;&gt;Hello&lt;/p&gt;</div><div class="line"></div><div class="line">// 当页面ready的时候，执行回调:</div><div class="line">Zepto(function($)&#123;</div><div class="line">  alert(&apos;Ready to Zepto!&apos;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>$.contains<br>$.contains(parent, node)   ⇒ boolean<br>检查父节点是否包含给定的dom节点，如果两者是相同的节点，则返回 false。</p>
+</li>
+<li>$.fn（）<br>Zepto.fn是一个对象，它拥有Zepto对象上所有可用的方法，如addClass()， attr()，和其它方法。在这个对象添加一个方法，所有的Zepto对象上都能用到该方法。</li>
+</ol>
+<p>这里有一个实现 Zepto 的 empty() 方法的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.fn.empty = function()&#123;</div><div class="line">  return this.each(function()&#123; this.innerHTML = &apos;&apos; &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Core给我们提供了许多zepto的方法，让我们可以通过这些方法来实现我们响应的操作（和jQuery差不多）</p>
+<hr>
+<h3 id="Zepto-Event"><a href="#Zepto-Event" class="headerlink" title="Zepto Event"></a>Zepto Event</h3><p>顾名思义，这个api主要提供的是一些zepto中的事件例如：<br><code>on，off,trigger,unbind,one...</code><br>在js中事件是非常非常重要的的东东，我会在以后中那源码来进行一一解析，今天就不做过多的叙述了！<br>不过要单独数一下Touch，它只针对于移动端，zepto对于移动端的兼容和处理更好一些，touch事件就是zepto和jQuery最大不同点之一，也是zepto比jQuery出色的地方之一了！(<code>touch属于zepto的插件，在要用的时候需要额外引入！！</code>)</p>
+<h3 id="Zepto-Ajax"><a href="#Zepto-Ajax" class="headerlink" title="Zepto Ajax"></a>Zepto Ajax</h3><p>这个模块主要实现的就是http请求，因为我还没有看到这部分的源码。就不多的加以叙述了</p>
+<h3 id="Zepto的常用模块"><a href="#Zepto的常用模块" class="headerlink" title="Zepto的常用模块"></a>Zepto的常用模块</h3><table>
+<thead>
+<tr>
+<th>module</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zepto</td>
+<td>✔</td>
+<td>核心模块包含许多方法</td>
+</tr>
+<tr>
+<td>event</td>
+<td>✔</td>
+<td>通过on()&amp; off()处理事件</td>
+</tr>
+<tr>
+<td>ajax</td>
+<td>✔</td>
+<td>XMLHttpRequest 和 JSONP 实用功能</td>
+</tr>
+<tr>
+<td>form</td>
+<td>✔</td>
+<td>序列化 &amp; 提交web表单</td>
+</tr>
+<tr>
+<td>ie</td>
+<td>✔</td>
+<td>增加支持桌面的Internet Explorer 10+和Windows Phone 8。</td>
+</tr>
+<tr>
+<td>detect</td>
+<td></td>
+<td>提供 $.os和 $.browser消息</td>
+</tr>
+<tr>
+<td>fx</td>
+<td></td>
+<td>The animate()方法</td>
+</tr>
+<tr>
+<td>fx_methods</td>
+<td></td>
+<td>以动画形式的 show, hide, toggle, 和 fade*()方法.</td>
+</tr>
+<tr>
+<td>assets</td>
+<td></td>
+<td>实验性支持从DOM中移除image元素后清理iOS的内存。</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>一个全面的 data()方法, 能够在内存中存储任意对象。</td>
+</tr>
+<tr>
+<td>deferred</td>
+<td></td>
+<td>提供 $.Deferredpromises API. 依赖”callbacks” 模块. 当包含这个模块时候, $.ajax() 支持promise接口链式的回调。</td>
+</tr>
+<tr>
+<td>callbacks</td>
+<td></td>
+<td>为”deferred”模块提供 $.Callbacks。</td>
+</tr>
+<tr>
+<td>selector</td>
+<td></td>
+<td>实验性的支持 jQuery CSS 表达式 实用功能，比如 $(‘div:first’)和 el.is(‘:visible’)。</td>
+</tr>
+<tr>
+<td>touch</td>
+<td></td>
+<td>在触摸设备上触发tap– 和 swipe– 相关事件。这适用于所有的<code>touch</code>(iOS, Android)和<code>pointer</code>事件(Windows Phone)。</td>
+</tr>
+<tr>
+<td>gesture</td>
+<td></td>
+<td>在触摸设备上触发 pinch 手势事件。</td>
+</tr>
+<tr>
+<td>stack</td>
+<td></td>
+<td>提供 andSelf&amp; end()链式调用方法</td>
+</tr>
+<tr>
+<td>ios3</td>
+<td></td>
+<td>String.prototype.trim 和 Array.prototype.reduce 方法 (如果他们不存在) ，以兼容 iOS 3.x.</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/16/Zepto的源码解析-5-常用API/" class="archive-article-date">
+  	<time datetime="2016-10-16T08:44:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-16</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/16/观察者模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          观察者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/08/Zepto源码解析-3-选择器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zepto源码解析(3)-选择器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
