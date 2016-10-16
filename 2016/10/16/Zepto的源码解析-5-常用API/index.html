@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/16/Zepto的源码解析-5-常用API/index.html">
 <meta property="og:site_name" content="静默花开">
 <meta property="og:description" content="学习一个框架我们我们要知道大体的实现原理，这个框架是干什么的，以及最重要的是要知道如何使用这个框架！那么zepto如何来使用呢？zepto为我们提供了很多api，我接下来主要介绍一下zepto常用的api！（只是介绍大概的API，以后会根据分类一点一点分析）">
-<meta property="og:updated_time" content="2016-10-16T08:53:34.000Z">
+<meta property="og:updated_time" content="2016-10-16T09:24:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zepto的源码解析(5)-常用API">
 <meta name="twitter:description" content="学习一个框架我们我们要知道大体的实现原理，这个框架是干什么的，以及最重要的是要知道如何使用这个框架！那么zepto如何来使用呢？zepto为我们提供了很多api，我接下来主要介绍一下zepto常用的api！（只是介绍大概的API，以后会根据分类一点一点分析）">
@@ -155,7 +155,8 @@
 </li>
 <li><p>$.contains<br>用法：$.contains(parent, node)   ⇒ boolean<br>检查父节点是否包含给定的dom节点，如果两者是相同的节点，则返回 false。</p>
 </li>
-<li>$.fn（）<br>Zepto.fn是一个对象，它拥有Zepto对象上所有可用的方法，如addClass()， attr()，和其它方法。在这个对象添加一个方法，所有的Zepto对象上都能用到该方法。</li>
+<li><p>$.fn（）<br>Zepto.fn是一个对象，它拥有Zepto对象上所有可用的方法，如addClass()， attr()，和其它方法。在这个对象添加一个方法，所有的Zepto对象上都能用到该方法。</p>
+</li>
 </ol>
 <p>这里有一个实现 Zepto 的 empty() 方法的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.fn.empty = function()&#123;</div><div class="line">  return this.each(function()&#123; this.innerHTML = &apos;&apos; &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>Core给我们提供了许多zepto的方法，让我们可以通过这些方法来实现我们响应的操作（和jQuery差不多）</p>
