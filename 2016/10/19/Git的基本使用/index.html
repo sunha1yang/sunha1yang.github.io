@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/19/Git的基本使用/index.html">
 <meta property="og:site_name" content="静默花开">
 <meta property="og:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
-<meta property="og:updated_time" content="2016-10-19T04:54:19.000Z">
+<meta property="og:updated_time" content="2016-10-19T05:24:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的基本使用">
 <meta name="twitter:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
@@ -200,8 +200,9 @@
 </li>
 <li><p>此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；</p>
 </li>
+<li><p>克隆：<code>git clone + 地址</code></p>
+</li>
 </ol>
-<p>4.克隆：<code>git clone + 地址</code></p>
 <h4 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h4><ol>
 <li><p>查看分支：<code>git branch</code></p>
 </li>
@@ -218,7 +219,8 @@
 </ol>
 <h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Auto-merging readme.txt</div><div class="line">CONFLICT (content): Merge conflict in readme.txt</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
 <ol>
-<li>这样就是出现了冲突！<br>Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，将冲突的部分修复，然后再进行add，commit等提交操作！<br>用<code>git log --graph</code>命令可以看到分支合并图。</li>
+<li>这样就是出现了冲突！</li>
+<li>Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，将冲突的部分修复，然后再进行add，commit等提交操作！<br>用<code>git log --graph</code>命令可以看到分支合并图。</li>
 </ol>
 <h4 id="分支策略"><a href="#分支策略" class="headerlink" title="分支策略"></a>分支策略</h4><ol>
 <li><p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
@@ -251,16 +253,18 @@
 </li>
 </ol>
 </blockquote>
-<ol>
-<li><p>1) 查看远程库信息，使用git remote -v；</p>
-<p>2)本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
-<p>3)从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
-<p>4)在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
-<p>5)建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
-<p>6)从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
-</li>
-</ol>
-<h4 id="使用gitHub"><a href="#使用gitHub" class="headerlink" title="使用gitHub"></a>使用gitHub</h4><ol>
+<pre><code>1) 查看远程库信息，使用git remote -v；
+
+2)本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+3)从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+
+4)在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+
+5)建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+
+6)从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+</code></pre><h4 id="使用gitHub"><a href="#使用gitHub" class="headerlink" title="使用gitHub"></a>使用gitHub</h4><ol>
 <li><p>在GitHub上，可以任意Fork开源仓库；</p>
 </li>
 <li><p>自己拥有Fork后的仓库的读写权限；</p>
