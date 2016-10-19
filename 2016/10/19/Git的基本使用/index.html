@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Git的基本使用 | 静默花开</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
+  <meta name="description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git的基本使用">
 <meta property="og:url" content="http://yoursite.com/2016/10/19/Git的基本使用/index.html">
 <meta property="og:site_name" content="静默花开">
-<meta property="og:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
-<meta property="og:updated_time" content="2016-10-19T04:45:47.000Z">
+<meta property="og:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
+<meta property="og:updated_time" content="2016-10-19T04:54:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的基本使用">
-<meta name="twitter:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
+<meta name="twitter:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
   
     <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
   
@@ -146,22 +146,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p>本文是我根据廖雪峰老师写的git教程（文章链接：<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！</a></p>
+        <h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p>本文是我根据廖雪峰老师写的git教程（文章链接：<a href="http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！" target="_blank" rel="external">http://www.liaoxuefeng.com），基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！</a></p>
 <a id="more"></a>
 <h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><ol>
-<li>要随时掌握工作区的状态，使用<code>git status</code>命令。<br>如果<code>git status</code>告诉你有文件被修改过，用<code>git diff</code>可以查看修改内容。</li>
+<li>要随时掌握工作区的状态，使用<code>git status</code>命令。</li>
+<li>如果<code>git status</code>告诉你有文件被修改过，用<code>git diff</code>可以查看修改内容。</li>
 </ol>
 <h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h4><ol>
 <li><p>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</p>
-<p>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</p>
-<p>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</p>
+</li>
+<li><p>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</p>
+</li>
+<li><p>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</p>
 <h4 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h4></li>
 <li><p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
-<p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+</li>
+<li><p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
 <h4 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h4></li>
 <li><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- file</code>。</p>
-<p> 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。</p>
-<p> 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+</li>
+<li><p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。</p>
+</li>
+<li><p>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
 <h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4></li>
 <li>命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</li>
 </ol>
@@ -171,30 +177,43 @@
 </blockquote>
 </li>
 </ol>
-<pre><code>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
-
-第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：
-
-然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容，点“Add Key”，你就应该看到已经添加的Key。
-</code></pre><h4 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h4><ol>
+<ol>
+<li><p>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+</li>
+<li><p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：</p>
+</li>
+<li><p>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容，点“Add Key”，你就应该看到已经添加的Key。</p>
+</li>
+</ol>
+<h4 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h4><ol>
 <li><p>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code>；</p>
-<p> 关联后，使用命令<code>git push -u origin master</code>第一次推送master分支的所有内容；</p>
-<p> 此后，每次本地提交后，只要有必要，就可以使用命令<code>git push origin master</code>推送最新修改；</p>
+</li>
+<li><p>关联后，使用命令<code>git push -u origin master</code>第一次推送master分支的所有内容；</p>
+</li>
+<li><p>此后，每次本地提交后，只要有必要，就可以使用命令<code>git push origin master</code>推送最新修改；</p>
 </li>
 </ol>
 <h4 id="添加到远程仓库和克隆"><a href="#添加到远程仓库和克隆" class="headerlink" title="添加到远程仓库和克隆"></a>添加到远程仓库和克隆</h4><ol>
 <li><p>要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；</p>
-<p> 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；</p>
-<p> 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；<br> git clone + 地址</p>
+</li>
+<li><p>关联后，使用命令git push -u origin master第一次推送master分支的所有内容；</p>
+</li>
+<li><p>此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；</p>
 </li>
 </ol>
+<p>4.克隆：<code>git clone + 地址</code></p>
 <h4 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h4><ol>
 <li><p>查看分支：<code>git branch</code></p>
-<p> 创建分支：<code>git branch &lt;name&gt;</code></p>
-<p> 切换分支：<code>git checkout &lt;name&gt;</code></p>
-<p> 创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
-<p> 合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
-<p> 删除分支：<code>git branch -d &lt;name&gt;</code></p>
+</li>
+<li><p>创建分支：<code>git branch &lt;name&gt;</code></p>
+</li>
+<li><p>切换分支：<code>git checkout &lt;name&gt;</code></p>
+</li>
+<li><p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
+</li>
+<li><p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+</li>
+<li><p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
 </li>
 </ol>
 <h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Auto-merging readme.txt</div><div class="line">CONFLICT (content): Merge conflict in readme.txt</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
@@ -203,19 +222,21 @@
 </ol>
 <h4 id="分支策略"><a href="#分支策略" class="headerlink" title="分支策略"></a>分支策略</h4><ol>
 <li><p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
-<p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
-<p>那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；</p>
-<p>你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。<br>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</p>
+<p> 1).首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
+<p> 2).那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；</p>
+<p> 3).你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。<br> 合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</p>
 </li>
 </ol>
 <h4 id="处理bug分支"><a href="#处理bug分支" class="headerlink" title="处理bug分支"></a>处理bug分支</h4><ol>
 <li><p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
-<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再<code>git stash pop</code>，回到工作现场。</p>
+</li>
+<li><p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再<code>git stash pop</code>，回到工作现场。</p>
 </li>
 </ol>
 <h4 id="feature分支处理"><a href="#feature分支处理" class="headerlink" title="feature分支处理"></a>feature分支处理</h4><ol>
 <li><p>开发一个新feature，最好新建一个分支；</p>
-<p>如果要丢弃一个没有被合并过的分支，可以通过<code>git branch -D &lt;name&gt;</code>强行删除。</p>
+</li>
+<li><p>如果要丢弃一个没有被合并过的分支，可以通过<code>git branch -D &lt;name&gt;</code>强行删除。</p>
 </li>
 </ol>
 <h4 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h4><blockquote>
@@ -241,17 +262,26 @@
 </ol>
 <h4 id="使用gitHub"><a href="#使用gitHub" class="headerlink" title="使用gitHub"></a>使用gitHub</h4><ol>
 <li><p>在GitHub上，可以任意Fork开源仓库；</p>
-<p>自己拥有Fork后的仓库的读写权限；</p>
-<p>可以推送pull request给官方仓库来贡献代码。</p>
+</li>
+<li><p>自己拥有Fork后的仓库的读写权限；</p>
+</li>
+<li><p>可以推送pull request给官方仓库来贡献代码。</p>
 </li>
 </ol>
 <h4 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h4><ol>
 <li><p>忽略某些文件时，需要编写.gitignore；</p>
-<p>.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！</p>
+</li>
+<li><p>.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！</p>
 </li>
 </ol>
 <h4 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h4><blockquote>
-<p>$ git config –global alias.st status<br>$ git config –global alias.co checkout<br>$ git config –global alias.ci commit<br>$ git config –global alias.br branch<br>17.配置Git的时候，加上–global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。<br>    每个仓库的Git配置文件都放在<code>.git/config</code>文件中,配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。<br>    别名就在[alias]后面，要删除别名，直接把对应的行删掉即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cat .gitconfig</div><div class="line">[alias]</div><div class="line">    co = checkout</div><div class="line">    ci = commit</div><div class="line">    br = branch</div><div class="line">    st = status</div><div class="line">[user]</div><div class="line">    name = Your Name</div><div class="line">    email = your@email.com</div></pre></td></tr></table></figure></p>
+<p>$ git config –global alias.st status<br>$ git config –global alias.co checkout<br>$ git config –global alias.ci commit<br>$ git config –global alias.br branch</p>
+<ol>
+<li>配置Git的时候，加上–global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。</li>
+<li>每个仓库的Git配置文件都放在<code>.git/config</code>文件中,配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。</li>
+<li>别名就在[alias]后面，要删除别名，直接把对应的行删掉即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cat .gitconfig</div><div class="line">[alias]</div><div class="line">    co = checkout</div><div class="line">    ci = commit</div><div class="line">    br = branch</div><div class="line">    st = status</div><div class="line">[user]</div><div class="line">    name = Your Name</div><div class="line">    email = your@email.com</div></pre></td></tr></table></figure>
+</li>
+</ol>
 </blockquote>
 <h4 id="工作中常用的git命令"><a href="#工作中常用的git命令" class="headerlink" title="工作中常用的git命令"></a>工作中常用的git命令</h4><ol>
 <li><code>git status</code>和<code>git  diff</code> 这两个命令主要是查看当前分支的状态，如果有修改在执行<code>git status</code> 后就可以看到更改的文件，使用<code>git diff +修改的文件？（问号的意思是可有可无）</code>查看文件改动内容</li>
