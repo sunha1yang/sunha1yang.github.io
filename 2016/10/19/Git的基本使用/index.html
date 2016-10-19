@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Git的基本使用 | 静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的基本使用">
+<meta property="og:url" content="http://yoursite.com/2016/10/19/Git的基本使用/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
+<meta property="og:updated_time" content="2016-10-19T04:45:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git的基本使用">
+<meta name="twitter:description" content="Git本文是我根据廖雪峰老师写的git教程（文章链接：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Git的基本使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git的基本使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p>本文是我根据廖雪峰老师写的git教程（文章链接：<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000）写的，基本都是copy，复制！♪(^∇^*)！不过比原文精简不少，可以少去很多细节，可以快速的掌握和使用！这就是所谓的精简哈！不过会一点一点补充在工作中遇到的问题！</a></p>
+<a id="more"></a>
+<h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><ol>
+<li>要随时掌握工作区的状态，使用<code>git status</code>命令。<br>如果<code>git status</code>告诉你有文件被修改过，用<code>git diff</code>可以查看修改内容。</li>
+</ol>
+<h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h4><ol>
+<li><p>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</p>
+<p>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</p>
+<p>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</p>
+<h4 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h4></li>
+<li><p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+<p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+<h4 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h4></li>
+<li><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- file</code>。</p>
+<p> 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。</p>
+<p> 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4></li>
+<li>命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</li>
+</ol>
+<h4 id="创建git公钥"><a href="#创建git公钥" class="headerlink" title="创建git公钥"></a>创建git公钥</h4><ol>
+<li>第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：<blockquote>
+<p>$  ssh-keygen -t rsa -C “youremail@example.com”<br>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。</p>
+</blockquote>
+</li>
+</ol>
+<pre><code>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+
+第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+
+然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容，点“Add Key”，你就应该看到已经添加的Key。
+</code></pre><h4 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h4><ol>
+<li><p>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code>；</p>
+<p> 关联后，使用命令<code>git push -u origin master</code>第一次推送master分支的所有内容；</p>
+<p> 此后，每次本地提交后，只要有必要，就可以使用命令<code>git push origin master</code>推送最新修改；</p>
+</li>
+</ol>
+<h4 id="添加到远程仓库和克隆"><a href="#添加到远程仓库和克隆" class="headerlink" title="添加到远程仓库和克隆"></a>添加到远程仓库和克隆</h4><ol>
+<li><p>要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；</p>
+<p> 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；</p>
+<p> 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；<br> git clone + 地址</p>
+</li>
+</ol>
+<h4 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h4><ol>
+<li><p>查看分支：<code>git branch</code></p>
+<p> 创建分支：<code>git branch &lt;name&gt;</code></p>
+<p> 切换分支：<code>git checkout &lt;name&gt;</code></p>
+<p> 创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
+<p> 合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p> 删除分支：<code>git branch -d &lt;name&gt;</code></p>
+</li>
+</ol>
+<h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Auto-merging readme.txt</div><div class="line">CONFLICT (content): Merge conflict in readme.txt</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
+<ol>
+<li>这样就是出现了冲突！<br>Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，将冲突的部分修复，然后再进行add，commit等提交操作！<br>用<code>git log --graph</code>命令可以看到分支合并图。</li>
+</ol>
+<h4 id="分支策略"><a href="#分支策略" class="headerlink" title="分支策略"></a>分支策略</h4><ol>
+<li><p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
+<p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
+<p>那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；</p>
+<p>你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。<br>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</p>
+</li>
+</ol>
+<h4 id="处理bug分支"><a href="#处理bug分支" class="headerlink" title="处理bug分支"></a>处理bug分支</h4><ol>
+<li><p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再<code>git stash pop</code>，回到工作现场。</p>
+</li>
+</ol>
+<h4 id="feature分支处理"><a href="#feature分支处理" class="headerlink" title="feature分支处理"></a>feature分支处理</h4><ol>
+<li><p>开发一个新feature，最好新建一个分支；</p>
+<p>如果要丢弃一个没有被合并过的分支，可以通过<code>git branch -D &lt;name&gt;</code>强行删除。</p>
+</li>
+</ol>
+<h4 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h4><blockquote>
+<ol>
+<li><p>首先，可以试图用git push origin branch-name推送自己的修改；</p>
+</li>
+<li><p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
+</li>
+<li><p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+</li>
+<li><p>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</p>
+</li>
+</ol>
+</blockquote>
+<ol>
+<li><p>1) 查看远程库信息，使用git remote -v；</p>
+<p>2)本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>3)从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>4)在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
+<p>5)建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
+<p>6)从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+</li>
+</ol>
+<h4 id="使用gitHub"><a href="#使用gitHub" class="headerlink" title="使用gitHub"></a>使用gitHub</h4><ol>
+<li><p>在GitHub上，可以任意Fork开源仓库；</p>
+<p>自己拥有Fork后的仓库的读写权限；</p>
+<p>可以推送pull request给官方仓库来贡献代码。</p>
+</li>
+</ol>
+<h4 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h4><ol>
+<li><p>忽略某些文件时，需要编写.gitignore；</p>
+<p>.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！</p>
+</li>
+</ol>
+<h4 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h4><blockquote>
+<p>$ git config –global alias.st status<br>$ git config –global alias.co checkout<br>$ git config –global alias.ci commit<br>$ git config –global alias.br branch<br>17.配置Git的时候，加上–global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。<br>    每个仓库的Git配置文件都放在<code>.git/config</code>文件中,配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。<br>    别名就在[alias]后面，要删除别名，直接把对应的行删掉即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cat .gitconfig</div><div class="line">[alias]</div><div class="line">    co = checkout</div><div class="line">    ci = commit</div><div class="line">    br = branch</div><div class="line">    st = status</div><div class="line">[user]</div><div class="line">    name = Your Name</div><div class="line">    email = your@email.com</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="工作中常用的git命令"><a href="#工作中常用的git命令" class="headerlink" title="工作中常用的git命令"></a>工作中常用的git命令</h4><ol>
+<li><code>git status</code>和<code>git  diff</code> 这两个命令主要是查看当前分支的状态，如果有修改在执行<code>git status</code> 后就可以看到更改的文件，使用<code>git diff +修改的文件？（问号的意思是可有可无）</code>查看文件改动内容</li>
+<li><code>git add</code>，<code>git commit -m +描述语(把当前改动写出来，方便以后查看的时候知道修改的内容)</code>,<code>git pull origin master</code>，<code>git push origin + 要上传的分支名</code>这四个操作一般是连起来用的，掌握这四个就可以向远程提交代码了</li>
+<li><code>git branch</code>，<code>git checkout -b + 分支名</code>创建和切换一起，<code>git checkout + 分支名</code>切换分支，<code>git merge + 分支名</code>合并分支</li>
+<li><code>git reset --hard commit_id(可以通过git log 查看到)</code> 版本回退（有些时候可能开发新功能的时候在原来分支开发没有切换新分支，但是原来的项目还没有上线，这个时候就悲剧了，因为你这个项目还没有开发完，前个项目上线不可能把你当前的代码都推到线上，所以你需要会退到你原来项目提测时的版本，记住，在回退时要把你写的代码备份好，要不然你现在写的代码都会灰飞烟灭）</li>
+</ol>
+<h4 id="我遇过的问题"><a href="#我遇过的问题" class="headerlink" title="我遇过的问题"></a>我遇过的问题</h4><h5 id="版本冲突"><a href="#版本冲突" class="headerlink" title="版本冲突"></a>版本冲突</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Auto-merging controller/v2/aj.js(冲突的文件)</div><div class="line">CONFLICT (content): Merge conflict in controller/v2/aj.js</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
+<p>这个时候就是显示已经发生了冲突！要确认你们那个人的版本是对的，解决冲突，然后再提交！</p>
+<h5 id="git-push时的问题"><a href="#git-push时的问题" class="headerlink" title="git push时的问题"></a>git push时的问题</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">To dev:fe.qufenqi</div><div class="line"> ! [rejected]        f_haiyang -&gt; f_haiyang (non-fast-forward)</div><div class="line">error: failed to push some refs to &apos;git@dev:fe.qufenqi&apos;</div><div class="line">hint: Updates were rejected because the tip of your current branch is behind</div><div class="line">hint: its remote counterpart. Integrate the remote chanMerge branch &apos;f_haiyang&apos; of dev:fe.qufenqi into f_haiyages (e.g.</div><div class="line">hint: &apos;git pull ...&apos;) before pushing again.</div><div class="line">hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.</div></pre></td></tr></table></figure>
+<p>出现时机：版本回退后出现的！<br> 解决办法：这种情况下要先拉一下远程的分支（分支就是提示里的分支名），然后再push！</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/19/Git的基本使用/" class="archive-article-date">
+  	<time datetime="2016-10-19T04:04:36.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-19</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/16/观察者模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">观察者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
