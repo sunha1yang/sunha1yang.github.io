@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1 单例模式1.1 理解对象(简单介绍)在实际开发中，我们会遇到这样一种情况：123456789var name1 = &apos;&apos;Jack;var age1 = 18;var name2 = &apos;Rose&apos;;var age2 = 17;function conPerson(name, age)&amp;#123;    console.log(name, age)&amp;#125;conPerson(name1, ag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静默花开">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/JS中常用的设计模式/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="1 单例模式1.1 理解对象(简单介绍)在实际开发中，我们会遇到这样一种情况：123456789var name1 = &apos;&apos;Jack;var age1 = 18;var name2 = &apos;Rose&apos;;var age2 = 17;function conPerson(name, age)&amp;#123;    console.log(name, age)&amp;#125;conPerson(name1, ag">
+<meta property="og:updated_time" content="2017-04-06T13:05:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="静默花开">
+<meta name="twitter:description" content="1 单例模式1.1 理解对象(简单介绍)在实际开发中，我们会遇到这样一种情况：123456789var name1 = &apos;&apos;Jack;var age1 = 18;var name2 = &apos;Rose&apos;;var age2 = 17;function conPerson(name, age)&amp;#123;    console.log(name, age)&amp;#125;conPerson(name1, ag">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-JS中常用的设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-单例模式"><a href="#1-单例模式" class="headerlink" title="1 单例模式"></a>1 单例模式</h2><h3 id="1-1-理解对象-简单介绍"><a href="#1-1-理解对象-简单介绍" class="headerlink" title="1.1 理解对象(简单介绍)"></a>1.1 理解对象(简单介绍)</h3><p>在实际开发中，我们会遇到这样一种情况：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name1 = <span class="string">''</span>Jack;</div><div class="line"><span class="keyword">var</span> age1 = <span class="number">18</span>;</div><div class="line"><span class="keyword">var</span> name2 = <span class="string">'Rose'</span>;</div><div class="line"><span class="keyword">var</span> age2 = <span class="number">17</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">conPerson</span>(<span class="params">name, age</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(name, age)</div><div class="line">&#125;</div><div class="line">conPerson(name1, age1)</div><div class="line">conPerson(name2, age2)</div></pre></td></tr></table></figure></p>
+<p>这是为了避免属性名冲突，我们会创建很对很多全局属性（name1、name2、name3、…），这样就会造成全局的很多污染，我们可以把描述同一件事物特征的属性放在同一个对象中,避免两个事物属性的冲突。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person1 = &#123;</div><div class="line">  name: <span class="string">'Jack'</span>,</div><div class="line">  age: <span class="string">'18'</span>,</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> person2 = &#123;</div><div class="line">  name: <span class="string">'Rose'</span>,</div><div class="line">  age: <span class="string">'17'</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">conPerson</span>(<span class="params">name, age</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(name, age)</div><div class="line">&#125;</div><div class="line"></div><div class="line">conPerson(person1.name, person1.age)</div><div class="line">conPerson(person2.name, person2.age)</div></pre></td></tr></table></figure>
+<p><strong>其实对象的作用远远不止于此，我们接下来会详细介绍一下：</strong></p>
+<h4 id="1-1对象的定义"><a href="#1-1对象的定义" class="headerlink" title="1.1对象的定义"></a>1.1对象的定义</h4><p>在ECMAScript-262中，对象被定义为“<strong>无序属性的集合，其属性可以包含基本值，对象或者函数</strong>”。</p>
+<p>对象由key-value对组成，其中value可以是基本值，对象或者函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这里的person就是一个对象</span></div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    name: <span class="string">'Tom'</span>,</div><div class="line">    age: <span class="number">18</span>,</div><div class="line">    write: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">    parent: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="操作对象"><a href="#操作对象" class="headerlink" title="操作对象"></a>操作对象</h4><p><strong>创建对象</strong></p>
+<ul>
+<li><p>对象字面量方式(用的最多)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过new的方式来创建对象：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var obj = new Object();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>对象添加属性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;&#125;;</div><div class="line">obj.name = &apos;Jack&apos;;</div><div class="line">obj[&apos;age&apos;] = 18;</div><div class="line">obj[3] = &apos;test&apos;; // 注意：如果属性名为数字时不能用点的形式来进行添加属性操作</div></pre></td></tr></table></figure></p>
+<p><strong>PS</strong>：对象主要就介绍到这里，下面来说一说单例模式</p>
+<h3 id="1-2单例模式"><a href="#1-2单例模式" class="headerlink" title="1.2单例模式"></a>1.2单例模式</h3><ul>
+<li>单例模式的核心：确保只有一个实例，并提供全局访问。</li>
+<li>单例模式的作用：把描述同一件事物的属性和方法放在同一堆内存中，起到分组的作用，防止冲突；这样不同事物间即使属性名一样也不会发生冲突。</li>
+<li>在单例模式中把对象名叫做<code>命名空间</code>。</li>
+<li>单例模式的优点：<ol>
+<li>实现分组</li>
+<li>防止变量名冲突</li>
+<li>模块化开发：对于一个较大的项目，需要多人协同开发，根据项目需求划分成几个功能板块，每个人负责一部分，同时开发，最后把每个人的代码进行合并<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    name: <span class="string">'Tom'</span>,</div><div class="line">    age: <span class="number">18</span>,</div><div class="line">    write: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.name) <span class="comment">// this指向person</span></div><div class="line">    &#125;,</div><div class="line">    parent: &#123;&#125;</div><div class="line">&#125;;</div><div class="line">person.write() <span class="comment">// 18</span></div><div class="line"><span class="keyword">var</span> person2 = &#123;</div><div class="line">    name: <span class="string">'Javk'</span>,</div><div class="line">    age: <span class="number">16</span>,</div><div class="line">    write: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(person.name) <span class="comment">// 两个模块之间相互调用是只需要通过模块名.属性名/模块名.方法名即可</span></div><div class="line">    &#125;,</div><div class="line">    parent: &#123;&#125;</div><div class="line">&#125;</div><div class="line">person2.write() <span class="comment">// 18</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>单例模式实质就是一个对象</strong></p>
+<blockquote>
+<p>参考资料：</p>
+<ol>
+<li><a href="https://cnodejs.org/topic/520dc59899f5db772c01ce1f" target="_blank" rel="external">Javascript单利模式</a></li>
+<li><a href="http://www.cnblogs.com/TomXu/archive/2012/02/20/2352817.html" target="_blank" rel="external">设计模式之单例模式</a></li>
+</ol>
+</blockquote>
+<h3 id="2-工厂模式"><a href="#2-工厂模式" class="headerlink" title="2 工厂模式"></a>2 工厂模式</h3><p><strong>单例模式的缺点</strong><br>单例模式虽然解决了分组的问题，但是在很多时候并不能满足我们的需求。如1.1中的例子可以看出，person1，person2有很多一样的地方，但是却写了两遍，造成代码的耦合。</p>
+<p><strong>工厂模式的出现就很好的解决了这个问题</strong></p>
+<p>工厂模式把实现同一件事情的代码放到一个函数中，如果以后想实现这个功能，就不需要重新编写代码了，只需执行当前函数就可以了，避免手动去创建对象，减少页面中的冗余代码，提高代码的重复利用率。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factory</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</div><div class="line">  obj.name = name;</div><div class="line">  obj.age = age;</div><div class="line">  obj.write = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.name + <span class="string">' can write JS!'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = factory(<span class="string">'Amy'</span>,<span class="number">12</span>);</div><div class="line"><span class="keyword">var</span> p2 = factory(<span class="string">'Bob'</span>,<span class="number">14</span>);</div><div class="line">p1.write(); <span class="comment">// Amy can write JS!</span></div><div class="line">p2.write(); <span class="comment">// Bob can write JS!</span></div></pre></td></tr></table></figure></p>
+<p><strong>问题点：</strong>虽然工厂模式解决了代码重复问题，但是无法解决实例的识别问题，因为工厂模式产出的对象都是<code>Object</code>类型的。因此我们需要引入构造函数来解决这个问题。</p>
+<h3 id="3-构造函数"><a href="#3-构造函数" class="headerlink" title="3 构造函数"></a>3 构造函数</h3><h4 id="3-1-构造函数的目的"><a href="#3-1-构造函数的目的" class="headerlink" title="3.1 构造函数的目的"></a>3.1 构造函数的目的</h4><p>构造函数模式的目的就是为了<code>创建自定义类</code>，并且创建这个类的实例，构造函数模式拥有了类和实例的概念，并且实例和实例之间是相互独立的，彼此互不干扰。</p>
+<h4 id="3-2-构造函数和普通函数的区别"><a href="#3-2-构造函数和普通函数的区别" class="headerlink" title="3.2 构造函数和普通函数的区别"></a>3.2 构造函数和普通函数的区别</h4><ul>
+<li>书写形式上：</li>
+</ul>
+<ol>
+<li>从形式上看，一个函数被作为构造函数还是普通函数执行的唯一区别，看是否使用了new运算符。</li>
+<li>执行的时候，构造函数new Person();而createPerson()只是普通函数执行。<br>通过new执行后，Person就是一个类了。</li>
+<li>约定俗成的规范是首字母大写:new Person();newCreatePerson();</li>
+</ol>
+<ul>
+<li>函数代码执行的时：<ul>
+<li>相同点：都是形成一个私有作用域，然后形参赋值，然后预解析，代码从上至下执行(类和普通函数一样，类也具有普通函数的一面)；</li>
+<li>不同点：</li>
+</ul>
+<ol>
+<li>构造函数在代码执行之前，不用手动创建对象，浏览器会默认创建一个对象数据类型的值(这个对象就是当前类的实例，以当前实例为主体，将属性名和属性值赋给实例,this代表当前实例)，浏览器会默认将创建的实例返回。</li>
+<li>this在构造函数中，是当前类的实例。</li>
+<li>虽然各个实例p1,p2都是CreatePerson的实例，都拥有write方法，但是不同实例之间的方法是不一样的；实例和实例之间是单独的个体，所以私有属性之间不相等。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreatePerson</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line"><span class="comment">// 浏览器默认创建的对象就是实例，无需像工厂模式手动创建对象</span></div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">  <span class="keyword">this</span>.write = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name,<span class="keyword">this</span>.age);</div><div class="line">  &#125;;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>, <span class="keyword">this</span>.name);</div><div class="line"><span class="comment">//浏览器默认将创建的实例返回</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> CreatePerson(<span class="string">'Amy'</span>,<span class="number">18</span>); <span class="comment">// this -&gt; p1 this.name -&gt; Amy</span></div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> CreatePerson(<span class="string">'Bob'</span>,<span class="number">18</span>); <span class="comment">// this -&gt; p2 this.name -&gt; Bob</span></div><div class="line"><span class="keyword">var</span> p3 = CreatePerson(<span class="string">'Cindy'</span>,<span class="number">20</span>); <span class="comment">// this -&gt; window this.name -&gt; Amy undefined</span></div><div class="line"><span class="comment">// 用普通函数执行方式执行，构造函数中this指window(方法名前没有点),p3没有返回值，则为undefined</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(p1.write === p2.write); <span class="comment">//false</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-原型链模式"><a href="#4-原型链模式" class="headerlink" title="4.原型链模式"></a>4.原型链模式</h3><p><strong>构造函数的问题：</strong>虽然构造函数解决了实例类型的问题，但是却无法解决方法被复用的问题：如每个实例都有一个write方法，而且方法是一样的，每次初始化实例的时候都会被重新生成，很占用内存，所以我们需要一个属性来挂载所有实例共有的方法和属性，而这正是原型对象。</p>
+<h4 id="4-1-原型模式三两句"><a href="#4-1-原型模式三两句" class="headerlink" title="4.1 原型模式三两句"></a>4.1 原型模式三两句</h4><ol>
+<li>每一个函数数据类型(普通函数、类)都有一个天生自带的属性:prototype(原型)，并且这个属性是一个对象数据类型的值。</li>
+<li>在prototype上，浏览器自动给它增加了一个constructor(构造函数)属性，属性是当前函数或类本身。</li>
+<li>每一个对象数据类型(普通对象，实例，prototype)也自带一个属性:_ <em>proto</em> _(两边各自两个下划线),属性值指向当前实例所属<code>类的原型</code>。</li>
+</ol>
+<h4 id="4-2-原型的作用"><a href="#4-2-原型的作用" class="headerlink" title="4.2 原型的作用"></a>4.2 原型的作用</h4><p>基于构造函数的原型模式，解决方法或属性共有的问题，把实例之间相同的属性和方法提取到CreatePerson.prototype上即可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreatePerson</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line">CreatePerson.prototype.write = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> CreatePerson(<span class="string">'Amy'</span>,<span class="number">12</span>);</div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> CreatePerson(<span class="string">'Bob'</span>,<span class="number">14</span>);</div><div class="line"><span class="built_in">console</span>.log(p1.write === p2.write); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h4 id="4-3-原型链查找机制"><a href="#4-3-原型链查找机制" class="headerlink" title="4.3 原型链查找机制"></a>4.3 原型链查找机制</h4><p><strong>原型链机制</strong><br>我们都知道每个对象都有toString方法，可是我们在创建对象时并没有创建此函数，那它是从哪里来的呢？</p>
+<ul>
+<li>首先在对象的私有属性上进行查找，如果私有存在这个属性（方法），则获取的是私有的属性值（方法）；如果私有的没有这个属性（方法），则通过_ <em>proto</em> _找到所属类的原型，原型上定义的属性和方法都是当前实例的公有属性和方法，原型上存在的话，获取的是公有的属性值（方法），如果原型上也没有，则通过原型上的<strong>proto</strong>继续向上查找，一直找到Object的prototype为止。这样就够成了一个原型链：</li>
+</ul>
+<p><strong>PS</strong></p>
+<ol>
+<li>Object是所有对象数据类型的基类(最顶层的类)，在它的原型上没有_ <em>proto</em> _属性</li>
+<li>查看对象的属性是否是私有属性，可调用hasOwnProperty方法</li>
+<li>在IE浏览器中，原型模式也是同样原理，但是IE浏览器不支持_ <em>proto</em> _查找</li>
+</ol>
+<h4 id="4-4-原型检测方法介绍"><a href="#4-4-原型检测方法介绍" class="headerlink" title="4.4 原型检测方法介绍"></a>4.4 原型检测方法介绍</h4><ol>
+<li>检测某个实例是否属于这个类–&gt;instanceof<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">100</span>;</div><div class="line">  <span class="keyword">this</span>.getX = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Fn();</div><div class="line"><span class="built_in">console</span>.log(f1 <span class="keyword">instanceof</span> Fn);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(f1 <span class="keyword">instanceof</span> <span class="built_in">Array</span>);  <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(f1 <span class="keyword">instanceof</span> Obejct);  <span class="comment">//true--&gt;所有实例都是对象数据类型的，而每一个对象数据类型都是Object内置类的实例</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>对于检测数据类型，typeof有自己的局限性，不能细分Obejct下的对象，例如数组，正则</p>
+<ol>
+<li><p>“in”检测某个属性是否属于这个对象–&gt; attr in object,不管是公有属性还是私有属性，只要存在则返回true</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'getX'</span> <span class="keyword">in</span> f1); <span class="comment">//若返回true，则证明getX是f1的私有方法</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>hasOwnProperty用来检测某一属性是某对象的私有属性，只能检测私有属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(f1.hasOwnProperty(getX)); <span class="comment">//true--&gt;说明getX是f1的私有属性</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>检测某一属性为该对象的公有属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPubProperty</span>(<span class="params">obj,attr</span>)</span>&#123;</div><div class="line"> <span class="keyword">return</span> (attr <span class="keyword">in</span> obj) &amp;&amp; !obj.hasOwnProperty(attr);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>isPrototypeOf来判断指定对象object1是否存在于另一个对象object2的原型链中，是则返回true，否则返回false。</p>
+</li>
+</ol>
+<h4 id="4-5-原型链应用（链式写法）"><a href="#4-5-原型链应用（链式写法）" class="headerlink" title="4.5 原型链应用（链式写法）"></a>4.5 原型链应用（链式写法）</h4><p>原型的最典型的应用可能就是链式写法了：执行完成一个方法后继续执行下一个方法，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var arr = [1, 2, 4, 5, 6];</div><div class="line">arr.sort(function(a,b) &#123;</div><div class="line">  return a-b</div><div class="line">&#125;).reverse().pop();</div></pre></td></tr></table></figure></p>
+<p>为什么可以进行上面的这样操作呢？其实通过原型模式很容易就知道：</p>
+<p>arr执行sort方法，因为sort是Array.prototype上的公有方法，arr是Array的一个实例，数组才能使用Array原型上定义的属性和方法<br>sort方法执行完成后返回的是一个数组，可以继续执行下面的方法，reverse返回的也是一个数组；pop返回的是被删除的那个元素，所以不能再继续执行下去了</p>
+<h3 id="5-继承"><a href="#5-继承" class="headerlink" title="5 继承"></a>5 继承</h3><p>子类继承父类中的属性和方法</p>
+<h4 id="5-1-原型继承方式"><a href="#5-1-原型继承方式" class="headerlink" title="5.1 原型继承方式"></a>5.1 原型继承方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = <span class="number">100</span>;</div><div class="line">&#125;</div><div class="line">A.prototype.getX = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.y = <span class="number">200</span>;</div><div class="line">&#125;</div><div class="line">B.prototype = <span class="keyword">new</span> A;</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> B();</div><div class="line"><span class="built_in">console</span>.log(b.x); <span class="comment">// 100</span></div></pre></td></tr></table></figure>
+<ol>
+<li>子类B继承父类A的所有属性和方法(私有和公有的)的方式，A的实例既有私有属性方法，又有公有属性和方法，所以用A的实例作为B的原型地址</li>
+<li>继承特点：把父类的私有的和公有的都继承到子类原型上，都是子类公有的</li>
+<li>核心：原型继承并不是把父类的属性和方法克隆一份给子类，而是让父类和子类之间增加了原型链的链接，以后子类的实例想要用父类的方法，需要一级级的向上查找来使用</li>
+</ol>
+<h2 id="5-2除原型链外的其他继承方式"><a href="#5-2除原型链外的其他继承方式" class="headerlink" title="5.2除原型链外的其他继承方式"></a>5.2除原型链外的其他继承方式</h2><ul>
+<li>call继承</li>
+<li>原型继承+call继承</li>
+<li>冒充对象继承</li>
+<li>混合模式继承</li>
+<li>寄生组合式继承</li>
+<li>中间类继承法</li>
+</ul>
+<p>继承其实还有好多可以说的，这里就不做深入介绍了</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://www.jianshu.com/p/15ac7393bc1f" target="_blank" rel="external">详解面向对象、构造函数、原型与原型链</a></li>
+<li>高级编程3第6章</li>
+<li>Javascript设计模式与实践开发第四章</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/04/06/JS中常用的设计模式/" class="archive-article-date">
+  	<time datetime="2017-04-06T13:05:03.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-06</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/06/发布-订阅模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/19/Git的基本使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git的基本使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>静默花开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念发布-订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于他的对象都将得到通知。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静默花开">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/发布-订阅模式/index.html">
+<meta property="og:site_name" content="静默花开">
+<meta property="og:description" content="概念发布-订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于他的对象都将得到通知。">
+<meta property="og:updated_time" content="2017-04-06T13:06:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="静默花开">
+<meta name="twitter:description" content="概念发布-订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于他的对象都将得到通知。">
+  
+    <link rel="alternative" href="/atom.xml" title="静默花开" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">sunha1yang</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+		        
+					<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">sunha1yang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://s.gravatar.com/avatar/ad58968d2d08caec43932f7aa2afcf13?s=80" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">sunha1yang</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/sunha1yang" title="github">github</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu">zhihu</a>
+			        
+						<a class="google" target="_blank" href="http://www.google.cn/" title="google">google</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-发布-订阅模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>发布-订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于他的对象都将得到通知。</p>
+<a id="more"></a>
+<h3 id="生活小栗子"><a href="#生活小栗子" class="headerlink" title="生活小栗子"></a>生活小栗子</h3><p>我们想煮泡面、喝茶、洗澡，但是发现没有热水了，然后我们就去烧水，把刚刚想做的事情先放一放，先烧水，这时你可以去做其他的事情，如看看电视，玩玩手机等，水开的时候会发出声响，这时就告诉我们可以去做之前想用热水去做的事情了。</p>
+<p>这里水开的声音就是一种发布-订阅模式。水在烧着，我们把之前要做的事情先记下订阅起来，待水开发出声响后可以通知我们做之前记下的事情。</p>
+<p>可以发现这个例子使用订阅发布的优点：</p>
+<ol>
+<li>我们不用一直观察水是否开，我们可以继续做其他事情，只需要听见水开的声音我们j就知道水开了，</li>
+<li>烧水这件事没有和其他事耦合起来，我们不用在乎拿什么锅烧水，烧了多少水这些事，只要听到水开的声音即可。</li>
+</ol>
+<p>第一点说明：发布-订阅模式可以广泛应用于异步编程中，可以替代传递回调函数的方案<br>第二点说明：发布-订阅模式被观察对象，与观察者之间的抽象耦合关系能够单独的扩展和重用。</p>
+<h3 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h3><p>实际上，我们的DOM事件就是一种发布-订阅模式，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">document.body.addEventListener(&apos;click&apos;, function()&#123;</div><div class="line">  console.log(&apos;1&apos;)</div><div class="line">&#125;, false);</div></pre></td></tr></table></figure></p>
+<p>我们给body绑定了click事件，并在此事件发生时打印日志，但是我们并不知道什么时候body会触发click，也不知道是谁触发的。但是我们订阅了body的click事件，当body节点被点击时，就会向订阅者发布这个信息，然后订阅者做相应的操作（打印1）。</p>
+<p>同时，我们还可以增加或者删除订阅者：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">document.body.addEventListener(&apos;click&apos;, function()&#123;</div><div class="line">  console.log(&apos;2&apos;)</div><div class="line">&#125;, false);</div><div class="line">document.body.addEventListener(&apos;click&apos;, function()&#123;</div><div class="line">  console.log(&apos;3&apos;)</div><div class="line">&#125;, false);</div></pre></td></tr></table></figure></p>
+<h3 id="自定义事件："><a href="#自定义事件：" class="headerlink" title="自定义事件："></a>自定义事件：</h3><p>订阅发布模式并不仅仅应用于DOM事件内，我们平时经常会实现一些自定义的事件，这种自定义的事件完成的订阅-发布模式可以用于任何javascript代码中。</p>
+<p><strong>准备工作</strong><br>实现发布-订阅模式的步骤：</p>
+<ol>
+<li>首先要指定好谁充当发布者（比如水开的声音）</li>
+<li>然后给发布者一个缓存列表，用于存放回调函数一遍通知订阅者</li>
+<li>发布消息时，发布者会遍历这个缓存列表，一次触发里面存放的订阅者的回调函数</li>
+</ol>
+<p><strong>具体实现</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyEvent</span>(<span class="params"></span>) </span>&#123;<span class="comment">//封装事件库，方便添加自定义事件用！</span></div><div class="line">&#125;</div><div class="line">MyEvent.prototype.on = <span class="function"><span class="keyword">function</span> (<span class="params">type, fn</span>) </span>&#123;<span class="comment">//订阅事件</span></div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>[<span class="string">'myEvent'</span> + type]) &#123;</div><div class="line">    <span class="keyword">this</span>[<span class="string">'myEvent'</span> + type] = []; <span class="comment">// 缓存列表</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> ary = <span class="keyword">this</span>[<span class="string">'myEvent'</span> + type];</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (ary[i] == fn) <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line">  ary.push(fn) <span class="comment">// 将订阅的消息添加到缓存列表</span></div><div class="line">&#125;;</div><div class="line">MyEvent.prototype.run = <span class="function"><span class="keyword">function</span> (<span class="params">myE, sysE</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ary = <span class="keyword">this</span>[<span class="string">'myEvent'</span> + myE.type];</div><div class="line">  <span class="keyword">if</span> (ary) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = ary.length; i &lt; len; i++) &#123; <span class="comment">// 依次通知订阅者</span></div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> ary[i] === <span class="string">'function'</span>) &#123;</div><div class="line">        ary[i].call(<span class="keyword">this</span>, myE, sysE)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ary.splice(i, <span class="number">1</span>);<span class="comment">//用splice的时候一定要记住，数组会坍塌</span></div><div class="line">        i--;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 接触订阅的方法</span></div><div class="line">MyEvent.prototype.off = <span class="function"><span class="keyword">function</span> (<span class="params">type, fn</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ary = <span class="keyword">this</span>[<span class="string">'myEvent'</span> + type];</div><div class="line">  <span class="keyword">if</span> (ary) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = ary.length; i &lt; len; i++) &#123;</div><div class="line">      <span class="keyword">if</span> (ary[i] == fn) &#123;</div><div class="line">        ary[i] = <span class="literal">null</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>至此我们实现了简单的订阅-发布模式了，我们拿之前烧水的例子试一试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function noodles(e)&#123;</div><div class="line">  console.log(&quot;煮面条&quot;,&quot;此时此刻的煮面条是由&quot;+e.message+&quot;触发的&quot;);</div><div class="line">&#125;</div><div class="line">function drink()&#123;</div><div class="line">  console.log(&quot;喝水&quot;);</div><div class="line">&#125;</div><div class="line">function bath()&#123;</div><div class="line">  console.log(&quot;洗澡&quot;);</div><div class="line">&#125;</div><div class="line">//普通的形式</div><div class="line">Kettle.prototype.boiling = function()&#123;</div><div class="line">  var that=this;</div><div class="line">  window.setTimeout(function()&#123;</div><div class="line">    console.log(&quot;水开了！&quot;);// 等了一万年水终于开了，我要开始泡面了，喝汤了，洗澡了</div><div class="line">    noodles()；</div><div class="line">    drink();</div><div class="line">    bath();</div><div class="line">    //....还有很多！</div><div class="line">  &#125;,6000);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">订阅发布模式呢？</div><div class="line">Kettle.prototype = new MyEvent();</div><div class="line">Kettle.prototype.boiling = function()&#123;</div><div class="line">  var that = this;</div><div class="line">  window.setTimeout(function()&#123;</div><div class="line">    console.log(&quot;水开了！&quot;);</div><div class="line">    that.run();// run通知绑定的事件执行</div><div class="line">  &#125;,6000);</div><div class="line">&#125;;</div><div class="line">var kettle1 = new Kettle;</div><div class="line">kettle1.on(&apos;boiling&apos;, noodles);</div><div class="line">kettle1.on(&apos;boiling&apos;, drink);</div><div class="line">kettle1.on(&apos;boiling&apos;, bath);</div><div class="line">//把我要做的事提前订阅好，静等水开</div></pre></td></tr></table></figure></p>
+<p>由上对比，我们可以很明显的发现发布-订阅模式的优点非常明显：</p>
+<ol>
+<li>时间上的解耦</li>
+<li>对象之间的解耦</li>
+<li>异步编程代码更加优雅</li>
+</ol>
+<h3 id="订阅-发布模式的缺点"><a href="#订阅-发布模式的缺点" class="headerlink" title="订阅-发布模式的缺点"></a>订阅-发布模式的缺点</h3><p>虽然订阅-发布模式很好用，但是也有缺点：</p>
+<ol>
+<li>如果一个被观察者对象有很多的直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间。</li>
+<li>如果在观察者和观察目标之间有循环依赖的话，观察目标会触发它们之间进行循环调用，可能导致系统崩溃。</li>
+<li>观察者模式没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</li>
+</ol>
+<h3 id="一个拖拽小DEMO"><a href="#一个拖拽小DEMO" class="headerlink" title="一个拖拽小DEMO"></a>一个拖拽小DEMO</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset="UTF-8"&gt;</div><div class="line">  &lt;title&gt;Title&lt;/title&gt;</div><div class="line">  &lt;style type="text/css"&gt;</div><div class="line">      .draggable&#123;</div><div class="line">        width: 50px;</div><div class="line">        height: 50px;</div><div class="line">        background-color: pink;</div><div class="line">        position: absolute;</div><div class="line">      &#125;</div><div class="line">  &lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class="draggable"&gt;拽我&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;script type="text/javascript"&gt;</div><div class="line">EventUtil = &#123;</div><div class="line">  on: function(ele, type, fn) &#123;</div><div class="line">    if (ele.addEventListener) &#123;</div><div class="line">      return ele.addEventListener(type, fn, false)</div><div class="line">    &#125;</div><div class="line">    if (!ele["myEvent" + type]) &#123;</div><div class="line">      ele["myEvent" + type] = [];</div><div class="line">      ele.attachEvent("on" + type, function() &#123;</div><div class="line">        run.call(ele);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">    var ary = ele["myEvent" + type];</div><div class="line">    for (var i = 0; i &lt; ary.length; i++) &#123;</div><div class="line">      if (ary[i] == fn) &#123;</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    ary.push(fn);</div><div class="line">  &#125;,</div><div class="line">  run: function() &#123;</div><div class="line">    var e = window.event;</div><div class="line">    var type = e.type;</div><div class="line">    if (!e.target) &#123;</div><div class="line">      e.target = e.srcElement;</div><div class="line">      e.stopPropagation = function() &#123;</div><div class="line">        e.cancelBubble = true</div><div class="line">      &#125;;</div><div class="line">      e.preventDefault = function() &#123;</div><div class="line">        e.returnValue = false;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    var ary = ele["myEvent" + type];</div><div class="line">    if (ary) &#123;</div><div class="line">      for (var i = 0; i &lt; ary.length; i++) &#123;</div><div class="line">        if (typeof ary[i] === "function") &#123;</div><div class="line">          ary[i].call(this, e)</div><div class="line">        &#125; else &#123;</div><div class="line">          ary.splice(i, 1);</div><div class="line">          i--; //在用splice的时候 一定要记得数组会塌陷、、、</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  off: function(ele, type, fn) &#123;</div><div class="line">    if (ele.removeEventListener) &#123;</div><div class="line">      ele.removeEventListener(type, fn, false);</div><div class="line">      return</div><div class="line">    &#125;</div><div class="line">    var ary = ele["myEvent" + type];</div><div class="line">    if (ary) &#123;</div><div class="line">      for (var i = 0; i &lt; ary.length; i++) &#123;</div><div class="line">        if (ary[i] === fn) &#123;</div><div class="line">          ary[i] = null;</div><div class="line">          return</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">//开始拖拽了哈</div><div class="line">var DragDrop = function() &#123;</div><div class="line">  var dragging = null;</div><div class="line"></div><div class="line">  function handleEvent(event) &#123;</div><div class="line">    switch (event.type) &#123; //确定事件类型</div><div class="line">      case "mousedown":</div><div class="line">        if (event.target.className.indexOf("draggable") &gt; -1) &#123;</div><div class="line">          dragging = event.target;</div><div class="line">          dragging.x = event.clientX;</div><div class="line">          dragging.y = event.clientY;</div><div class="line">          dragging.l = dragging.offsetLeft;</div><div class="line">          dragging.t = dragging.offsetTop;</div><div class="line">        &#125;</div><div class="line">        break;</div><div class="line">      case "mousemove":</div><div class="line">        if (dragging !== null) &#123;</div><div class="line">          dragging.style.left = event.clientX - dragging.x + dragging.l + "px";</div><div class="line">          dragging.style.top = event.clientY - dragging.y + dragging.t + "px";</div><div class="line">        &#125;</div><div class="line">        break;</div><div class="line">      case "mouseup":</div><div class="line">        dragging = null;</div><div class="line">        break;</div><div class="line">    &#125;</div><div class="line">    event.preventDefault();</div><div class="line">  &#125;</div><div class="line">  return &#123; //公共接口</div><div class="line">    enable: function() &#123;</div><div class="line">      EventUtil.on(document, "mousedown", handleEvent);</div><div class="line">      EventUtil.on(document, "mousemove", handleEvent);</div><div class="line">      EventUtil.on(document, "mouseup", handleEvent);</div><div class="line">    &#125;,</div><div class="line">    disable: function() &#123;</div><div class="line">      EventUtil.off(document, "mousedown", handleEvent);</div><div class="line">      EventUtil.off(document, "mousemove", handleEvent);</div><div class="line">      EventUtil.off(document, "mouseup", handleEvent);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;();</div><div class="line">DragDrop.enable(); //只要写了这行代码，就可以实现拖拽了</div><div class="line">//DragDrop.disable();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/04/06/发布-订阅模式/" class="archive-article-date">
+  	<time datetime="2017-04-06T13:06:21.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-06</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/06/JS中常用的设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 sunha1yang
+    	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">sunha1yang&lt;br&gt;&lt;br&gt;前端开发工程师&lt;br/&gt;公司：趣店&lt;br&gt;&lt;br/&gt;每天努力一点点&lt;br/&gt;不曾停止&lt;br/&gt;一直向前！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
